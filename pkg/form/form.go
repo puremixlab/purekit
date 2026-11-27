@@ -31,9 +31,15 @@ const (
 // touched, their errors and the checks still running. The app edits Values directly, binding its
 // controls to its fields.
 type Form[T any] struct {
-	Values   T
-	baseline T
+	Values        T
+	baseline      T
+	pendingSubmit *submission[T]
 	host
+}
+
+type submission[T any] struct {
+	values  T
+	started bool
 }
 
 // New returns a form whose Values and baseline, for IsDirty and Reset, are initial.
@@ -47,6 +53,7 @@ func (f *Form[T]) IsDirty() bool { return !reflect.DeepEqual(f.Values, f.baselin
 // Reset puts back the values the form started from or last submitted, and forgets its errors.
 func (f *Form[T]) Reset() {
 	f.Values = deepCopy(f.baseline)
+	f.pendingSubmit = nil
 	f.clear()
 }
 
@@ -79,7 +86,6 @@ type host struct {
 	fields        map[string]*fieldState
 	order         []string
 	submitCount   int
-	submitting    bool
 	changed       bool
 	changePending bool
 	groupFields   int
@@ -140,7 +146,7 @@ func (h *host) clear() {
 		}
 	}
 	h.fields = map[string]*fieldState{}
-	h.submitCount, h.submitting = 0, false
+	h.submitCount = 0
 }
 
 func (h *host) shouldValidate(fs *fieldState, t trigger) bool {
@@ -305,10 +311,9 @@ func isEmpty(v any) bool {
 }
 
 func deepCopy[T any](v T) T {
-	src := reflect.ValueOf(&v).Elem()
-	dst := reflect.New(src.Type()).Elem()
-	copyValue(dst, src)
-	return dst.Interface().(T)
+	var out T
+	copyValue(reflect.ValueOf(&out).Elem(), reflect.ValueOf(&v).Elem())
+	return out
 }
 
 func copyValue(dst, src reflect.Value) {
