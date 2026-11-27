@@ -2,6 +2,7 @@ package form
 
 import (
 	"context"
+	"reflect"
 	"time"
 
 	"github.com/egoist/mygo/ui"
@@ -44,8 +45,9 @@ type Props[T any] struct {
 	Gap float32
 	// ValidateOn is when fields check their values; ValidateAuto by default.
 	ValidateOn ValidateOn
-	// OnSubmit gets the values once every field is valid. The values become the form's baseline
-	// unless it returns an error.
+	// OnSubmit gets the values once every field is valid. Editing the form while validation is
+	// pending cancels the submission. Submitted values become the baseline unless OnSubmit returns
+	// an error.
 	OnSubmit func(values T) error
 	// OnValuesChange gets the values after a change, ChangeDebounce after the last one, as to
 	// save as the user types.
@@ -69,10 +71,8 @@ func View[T any](c *ui.Context, f *Form[T], p Props[T], content func()) ui.Eleme
 		fs.registered = false
 	}
 	h.dirty, h.reset = f.IsDirty, f.Reset
-	h.submit = func() {
-		h.validateAll()
-		h.submitting = true
-	}
+	submitRequested := false
+	h.submit = func() { submitRequested = true }
 
 	gap := p.Gap
 	switch {
@@ -93,15 +93,13 @@ func View[T any](c *ui.Context, f *Form[T], p Props[T], content func()) ui.Eleme
 			delete(h.fields, name)
 		}
 	}
-	if h.submitting && !h.busy() {
-		h.submitting = false
-		if !h.hasErrors() && p.OnSubmit != nil && p.OnSubmit(deepCopy(f.Values)) == nil {
-			f.baseline = deepCopy(f.Values)
-			for _, fs := range h.fields {
-				fs.touched, fs.edited = false, false
-			}
-			h.submitCount = 0
-		}
+	if submitRequested {
+		// A control can commit an edit while rendering. Validate on the next frame so
+		// the fields register the values captured after this frame's controls ran.
+		f.pendingSubmit = &submission[T]{values: deepCopy(f.Values)}
+		c.Invalidate()
+	} else {
+		f.checkSubmission(c, p.OnSubmit)
 	}
 	if h.changed {
 		h.changed = false
@@ -117,6 +115,37 @@ func View[T any](c *ui.Context, f *Form[T], p Props[T], content func()) ui.Eleme
 		p.OnValuesChange(deepCopy(f.Values))
 	}
 	return root
+}
+
+func (f *Form[T]) checkSubmission(c *ui.Context, onSubmit func(T) error) {
+	attempt := f.pendingSubmit
+	if attempt == nil {
+		return
+	}
+	if !reflect.DeepEqual(f.Values, attempt.values) {
+		f.pendingSubmit = nil
+		return
+	}
+	if !attempt.started {
+		attempt.started = true
+		f.validateAll()
+		c.Invalidate()
+		return
+	}
+	if f.busy() {
+		return
+	}
+
+	f.pendingSubmit = nil
+	if f.hasErrors() || onSubmit == nil || onSubmit(attempt.values) != nil {
+		return
+	}
+	f.baseline = deepCopy(f.Values)
+	for _, fs := range f.fields {
+		fs.touched, fs.edited = false, false
+	}
+	f.submitCount = 0
+	c.Invalidate()
 }
 
 type FieldProps struct {
