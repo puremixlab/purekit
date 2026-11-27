@@ -42,6 +42,11 @@ const (
 // years and views to choose a month and a year. The arrows, Page Up and Page Down move between
 // days while a day has the focus, and Enter chooses one.
 func Calendar(c *ui.Context, value *time.Time, p CalendarProps) ui.Element {
+	root, _ := calendar(c, value, p)
+	return root
+}
+
+func calendar(c *ui.Context, value *time.Time, p CalendarProps) (ui.Element, bool) {
 	tk := theme.TokensOf(c)
 	root := ui.Column(c).Width(calendarWidth).TextColor(tk.Text).Shrink(0)
 	st := ui.Local(root, "calendar", func() calendarState { return calendarState{} })
@@ -54,9 +59,11 @@ func Calendar(c *ui.Context, value *time.Time, p CalendarProps) ui.Element {
 		st.view, st.cursor, st.last, st.init = monthOf(at), at, *value, true
 	}
 	disabled := func(d time.Time) bool { return p.DisabledDate != nil && p.DisabledDate(d) }
+	picked := false
 	choose := func(d time.Time) {
 		*value = d
 		st.last, st.cursor, st.view = d, d, monthOf(d)
+		picked = true
 	}
 
 	root.Children(func() {
@@ -102,7 +109,7 @@ func Calendar(c *ui.Context, value *time.Time, p CalendarProps) ui.Element {
 			})
 		}
 	})
-	return root
+	return root, picked
 }
 
 func calendarHeader(c *ui.Context, tk *theme.Tokens, st *calendarState) {

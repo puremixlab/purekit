@@ -45,6 +45,38 @@ func TestInputNumberTypesAndCommits(t *testing.T) {
 	}
 }
 
+func TestInputNumberRespectsBoundsWithPrecision(t *testing.T) {
+	for _, tc := range []struct {
+		name  string
+		min   float64
+		max   float64
+		typed string
+		bound float64
+		label string
+	}{
+		{"upper", 0, 1.26, "1.28", 1.26, "1.26"},
+		{"lower", 1.24, 3, "1.2", 1.24, "1.24"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			value := 1.25
+			tt := numberTester(&value, InputNumberProps{Min: tc.min, Max: tc.max, Precision: 1})
+			if err := tt.Click("count"); err != nil {
+				t.Fatal(err)
+			}
+			tt.Key(ui.Cmd, ui.KeyA)
+			tt.Type(tc.typed)
+			tt.Key(0, ui.KeyEnter)
+			tt.Frame()
+			if value != tc.bound {
+				t.Fatalf("committed value %v, want bound %v", value, tc.bound)
+			}
+			if info, ok := tt.AccessByRole(ui.RoleTextField, "count"); !ok || info.Value != tc.label {
+				t.Errorf("field shows %q, want exact bound %q", info.Value, tc.label)
+			}
+		})
+	}
+}
+
 func TestInputNumberControlsStep(t *testing.T) {
 	v := 1.0
 	tt := numberTester(&v, InputNumberProps{Step: 0.5, Precision: 2})
