@@ -83,9 +83,18 @@ func ogText(c *ui.Context) {
 			ui.Text(c, "lobe-mygo").Font("Menlo").FontSize(34).FontWeight(700).TextColor(white)
 		})
 	})
+	const headlineWidth = 680 - 64
+	headlineFont := ui.Font{Family: "Helvetica Neue", Size: 76, Weight: 700}
+	for _, line := range ogHeadline {
+		width, _ := ui.ShapeText(line, headlineFont, 0).Size()
+		if width > headlineWidth {
+			headlineFont.Size *= headlineWidth / width
+		}
+	}
 	ui.Column(c).Absolute().Left(64).Top(222).Children(func() {
 		for i, line := range ogHeadline {
-			ui.Text(c.Key(i), line).Font("Helvetica Neue").FontSize(76).FontWeight(700).LetterSpacing(-1.5).LineHeight(1.12).TextColor(white)
+			ui.Text(c.Key(i), line).Font(headlineFont.Family).FontSize(headlineFont.Size).
+				FontWeight(headlineFont.Weight).LetterSpacing(-1.5).LineHeight(1.12).TextColor(white)
 		}
 	})
 	ui.Column(c).Absolute().Left(64).Top(486).Children(func() {
