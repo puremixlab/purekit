@@ -32,7 +32,7 @@ func TestOGLeftColumn(t *testing.T) {
 	if !ok || desc.Y < second.Y+second.H+40 || desc.X != 64 {
 		t.Errorf("description %+v, want under the headline at x 64", desc)
 	}
-	if right := first.X + first.W; right > 680 {
+	if right := max(first.X+first.W, second.X+second.W); right > 680 {
 		t.Errorf("headline reaches x %v, want it clear of the mascots", right)
 	}
 }
