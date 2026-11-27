@@ -48,6 +48,26 @@ func TestDatePickerOpensPicksAndClears(t *testing.T) {
 	}
 }
 
+func TestDatePickerClosesWhenReselectingTheSameDay(t *testing.T) {
+	value := time.Date(2026, 11, 12, 0, 0, 0, 0, time.Local)
+	tt := ui.NewTester(func(c *ui.Context) {
+		theme.Apply(c)
+		ui.Column(c).Padding(20).Width(260).Children(func() {
+			DatePicker(c, &value, DatePickerProps{}).Label("Due")
+		})
+	}, 400, 500)
+
+	clickRole(t, tt, ui.RoleButton, "Due")
+	tt.Advance(time.Second)
+	tt.Frame()
+	clickRole(t, tt, ui.RoleButton, value.Format("2006-01-02"))
+	tt.Advance(time.Second)
+	tt.Frame()
+	if _, open := tt.AccessByRole(ui.RoleButton, "Today"); open {
+		t.Fatal("calendar stayed open after reselecting the current date")
+	}
+}
+
 func TestDatePickerClearButtonCenteredAndStates(t *testing.T) {
 	tk := theme.Light()
 	picked := time.Date(2026, 11, 12, 0, 0, 0, 0, time.Local)

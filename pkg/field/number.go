@@ -16,7 +16,8 @@ type InputNumberProps struct {
 	Min, Max float64
 	// Step is how far the arrows, Up and Down move the value: 1 when zero.
 	Step float64
-	// Precision fixes the digits shown after the point; 0 shows as many as the value has.
+	// Precision fixes the digits shown after the point. A bound with more digits is shown
+	// exactly. With 0, the field shows as many digits as the value has.
 	Precision int
 	// NoControls hides the up and down arrows at the end.
 	NoControls bool
@@ -42,23 +43,29 @@ func InputNumber(c *ui.Context, value *float64, p InputNumberProps) ui.Element {
 	if step <= 0 {
 		step = 1
 	}
+	bounded := p.Min != p.Max
 	format := func(v float64) string {
 		if p.Precision > 0 {
-			return strconv.FormatFloat(v, 'f', p.Precision, 64)
+			text := strconv.FormatFloat(v, 'f', p.Precision, 64)
+			if !bounded || (v != p.Min && v != p.Max) {
+				return text
+			}
+			if shown, _ := strconv.ParseFloat(text, 64); shown == v {
+				return text
+			}
 		}
 		return strconv.FormatFloat(v, 'f', -1, 64)
 	}
-	clamp := func(v float64) float64 {
-		if p.Min != p.Max {
-			v = math.Min(math.Max(v, p.Min), p.Max)
-		}
+	set := func(v float64) {
 		if p.Precision > 0 {
 			k := math.Pow(10, float64(p.Precision))
 			v = math.Round(v*k) / k
 		}
-		return v
+		if bounded {
+			v = math.Min(math.Max(v, p.Min), p.Max)
+		}
+		*value = v
 	}
-	set := func(v float64) { *value = clamp(v) }
 
 	root := fieldRow(c, tk, p.Size).Gap(8)
 	draft := ui.Local(root, "draft", func() numberDraft { return numberDraft{text: format(*value)} })

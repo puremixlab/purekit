@@ -79,12 +79,12 @@ func DatePicker(c *ui.Context, value *time.Time, p DatePickerProps) ui.Element {
 		if p.Disabled {
 			return
 		}
-		before := *value
+		picked := false
 		panel := overlay.Popover(c, trigger, open, overlay.PopoverProps{Placement: overlay.Bottom}, func() {
-			Calendar(c, value, CalendarProps{DisabledDate: p.DisabledDate, WeekStart: p.WeekStart, NoToday: p.NoToday})
+			_, picked = calendar(c, value, CalendarProps{DisabledDate: p.DisabledDate, WeekStart: p.WeekStart, NoToday: p.NoToday})
 		})
 		panel.Padding(0).Radius(16)
-		if !value.Equal(before) {
+		if picked {
 			*open = false
 		}
 	})
