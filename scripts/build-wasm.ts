@@ -1,7 +1,7 @@
 import { execFile } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { watch } from 'node:fs';
-import { copyFile, mkdir, readdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
+import { chmod, mkdir, readdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { join, relative, sep } from 'node:path';
 import { promisify } from 'node:util';
 
@@ -36,7 +36,13 @@ async function build(): Promise<string> {
   await rename(tmp, join(outDir, name));
 
   const { stdout: goroot } = await go(['env', 'GOROOT']);
-  await copyFile(join(goroot.trim(), 'lib', 'wasm', 'wasm_exec.js'), join(outDir, 'wasm_exec.js'));
+  const wasmExec = join(outDir, 'wasm_exec.js');
+  const runtime = await readFile(join(goroot.trim(), 'lib', 'wasm', 'wasm_exec.js'));
+  // Earlier builds copied the Go module cache file's read-only permissions on Windows.
+  await chmod(wasmExec, 0o644).catch((error: NodeJS.ErrnoException) => {
+    if (error.code !== 'ENOENT') throw error;
+  });
+  await writeFile(wasmExec, runtime);
 
   const page = await readFile(join(root, 'web', 'mygo', 'index.html'), 'utf8');
   await writeFile(

@@ -69,7 +69,7 @@ Lobe MyGo brings the [Lobe UI](https://github.com/lobehub/lobe-ui) design langua
 $ go get github.com/lobehub/lobe-mygo
 ```
 
-Lobe MyGo needs Go 1.27 or later and builds on [MyGo](https://github.com/egoist/mygo).
+Lobe MyGo needs Go 1.27.3 or later and builds on [MyGo](https://github.com/egoist/mygo).
 
 ```go
 package main
@@ -176,7 +176,7 @@ Questions, ideas and showcases are all welcome:
 
 ## ⌨️ Local Development
 
-Clone it for local development (Go >= 1.27 and Bun):
+Local development requires Go 1.27.3 or newer and Bun 1.4 or newer.
 
 ```bash
 $ git clone https://github.com/lobehub/lobe-mygo.git

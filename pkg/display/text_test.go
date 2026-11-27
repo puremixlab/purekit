@@ -38,17 +38,22 @@ func TestTextTypesColorTheInk(t *testing.T) {
 }
 
 func TestTextHeadingsScaleTheFont(t *testing.T) {
-	sizes := map[int]float32{}
-	for _, h := range []int{0, 1, 2, 3, 4, 5} {
-		tt := textTester("Title", TextProps{Heading: h}, 300)
-		r, _ := tt.Find("Title")
-		sizes[h] = r.H
-	}
-	if !(sizes[1] > sizes[2] && sizes[2] > sizes[3] && sizes[3] > sizes[4] && sizes[4] > sizes[5] && sizes[5] >= sizes[0]-0.5) {
-		t.Errorf("line boxes by heading %v: want h1 > h2 > h3 > h4 > h5 ≈ body", sizes)
-	}
-	if h1 := sizes[1]; h1 < 14*2.5*1.25-1 || h1 > 14*2.5*1.25+1 {
-		t.Errorf("h1 line box %v, want 2.5× the font size at line height 1.25", h1)
+	const title = "Title"
+	const width = 300
+	for i, scale := range []float32{2.5, 2, 1.5, 1.25, 1} {
+		heading := i + 1
+		tt := textTester(title, TextProps{Heading: heading}, width)
+		got, ok := tt.Find(title)
+		if !ok {
+			t.Fatalf("heading %d did not render", heading)
+		}
+
+		// Shaping accounts for the platform font's ascent and descent.
+		font := ui.Font{Size: theme.Light().FontSize * scale, Weight: 700, LineHeight: 1.25}
+		_, want := ui.ShapeText(title, font, width).Size()
+		if got.H < want-0.1 || got.H > want+0.1 {
+			t.Errorf("heading %d line box %.2f, want %.2f", heading, got.H, want)
+		}
 	}
 }
 
