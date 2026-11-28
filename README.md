@@ -64,18 +64,22 @@ func main() {
 
 Call `theme.Apply(c)` at the top of each view and use `theme.TokensOf(c)` for its design tokens. For a full desktop window with a title bar, sidebar, tabs, and settings, see [the desktop starter](./examples/desktop).
 
+The [desktop workspace](./examples/workspace) connects an outline, a table and a resizable inspector. The [native desktop guide](./docs/native-desktop.mdx) covers system panels and menu bar items.
+
 ## Packages
 
 | Package        | Components                                                                                                                              |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | `pkg/action`   | Button, ActionIcon, ActionIconGroup, CopyButton, Segmented                                                                              |
-| `pkg/field`    | Input, TextArea, InputNumber, InputPassword, InputOTP, Select, AutoComplete, SearchBar, HotkeyInput, EditableText, DatePicker, Calendar, Upload |
+| `pkg/field`    | Input, TextArea, InputNumber, InputPassword, InputOTP, Select, AutoComplete, SearchBar, HotkeyInput, EditableText, DatePicker, Calendar, Upload, ComboBox, TokenField, Stepper, TimePicker, DateRangePicker, ImageWell, RichTextEditor, RuleEditor |
 | `pkg/choice`   | Checkbox, RadioGroup, Switch, Slider, Rate, ToggleGroup, ColorSwatches, ColorPicker, ImageSelect                                        |
-| `pkg/display`  | Text, Tag, Avatar, GroupAvatar, AgentAvatar, Icon, Hotkey, Image, List, Accordion, Empty, Skeleton                                      |
-| `pkg/feedback` | Alert, Badge, Progress, Spin, Result, Modal, Drawer, Toast, FloatingPanel, FloatingSheet                                                |
+| `pkg/display`  | Text, Tag, Avatar, GroupAvatar, AgentAvatar, Icon, Hotkey, Image, List, Accordion, Empty, Skeleton, Table, Outline, OutlineTable, CollectionView, ColumnView, Chart |
+| `pkg/feedback` | Alert, Badge, Progress, Spin, Result, Modal, Drawer, Toast, FloatingPanel, FloatingSheet, LevelIndicator |
 | `pkg/overlay`  | Tooltip, Popover, DropdownMenu, ContextMenu                                                                                             |
-| `pkg/nav`      | Tabs, Pagination, Breadcrumb, Steps, Burger                                                                                             |
-| `pkg/layout`   | Block, Grid, Divider, ScrollArea, DraggablePanel, Header, SideNav, DraggableSideNav, Layout, GuideCard, SortableList                    |
+| `pkg/nav`      | Tabs, Pagination, Breadcrumb, Steps, Burger, PathControl |
+| `pkg/layout`   | Block, Grid, Divider, ScrollArea, DraggablePanel, Header, SideNav, DraggableSideNav, Layout, GuideCard, SortableList, SplitView, Inspector, Toolbar |
+| `pkg/command`  | Shared toolbar, keyboard and native menu commands |
+| `pkg/desktop`  | Native sheets, panels, save dialogs, status items, macOS sharing, Font panel and Quick Look |
 | `pkg/form`     | Form, Field, Group, SubmitFooter |
 | `pkg/code`     | Highlighter, Snippet, QRCode                                                                                                            |
 | `pkg/markdown` | Markdown, with streaming                                                                                                                |

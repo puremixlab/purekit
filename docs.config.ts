@@ -4,7 +4,7 @@ const siteUrl = process.env.PUREKIT_DOCS_URL || 'http://localhost:5173';
 export default {
   atomDirs: [{ dir: 'catalog' }],
   homePage: './docs/home/home.tsx',
-  publicDocs: ['docs/getting-started.mdx'],
+  publicDocs: ['docs/getting-started.mdx', 'docs/native-desktop.mdx'],
   description: 'UI components for native Go apps, drawn on the GPU with MyGo.',
   favicons: {
     icon: '/favicon-32x32.png',

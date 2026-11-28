@@ -1,0 +1,28 @@
+---
+title: Native desktop
+description: Compose a desktop workspace and open system panels from a PureKit app.
+---
+
+# Native desktop
+
+Run `go run ./examples/workspace` for a document browser. Its folder tree, file table and inspector share selection. Toolbar and native menu commands use the same label, shortcut, enabled state and action. The app saves pane widths and visibility when the window closes.
+
+The [Desktop Workspace](/components/workspace) demo also runs in the browser.
+
+## System panels and menu bar items
+
+Run `go run ./examples/native-panels` to try the `github.com/puremixlab/purekit/pkg/desktop` package.
+
+| API | Behavior |
+| --- | --- |
+| `ShowSheet` | Opens a child window modal to its parent. On macOS it attaches as a sheet. |
+| `ShowPanel` | Opens an independent native floating panel with PureKit content. |
+| `SaveFile` | Uses the system save dialog to return a location. An empty path means the user canceled. |
+| `NewStatusItem` | Uses shared commands for an app's menu bar or notification-area menu. Call `Refresh` after changing their enabled or checked state. |
+| `ShowShare` | Opens the macOS sharing picker with text or file URLs at a rectangle in the window. |
+| `ShowFontPanel` | Opens the macOS Font panel and reports the selected face and size through `OnChange`. |
+| `ShowQuickLook` | Previews local files in macOS Quick Look. |
+
+Call native controls after `mygo.App.WhenReady`, and pass the open window for parented controls. `SupportsMacPanels` can be used to enable AppKit-only actions. On other platforms those actions return `ErrUnavailable`.
+
+Use [MyGo File Picker](/components/upload) for file or folder selection in a PureKit view. The native example also uses MyGo's file dialog with an explicit parent for Quick Look.

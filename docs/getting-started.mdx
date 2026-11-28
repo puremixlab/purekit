@@ -58,18 +58,22 @@ The view is a function MyGo calls for every frame, and the state is your own var
 
 PureKit includes English and Simplified Chinese strings for its controls. An app can override or translate the messages through the existing `lobe.<key>` keys in its MyGo catalogs.
 
+See the [native desktop guide](/native-desktop) for a resizable document workspace, shared menu commands and system panels.
+
 ## Packages
 
 | Package        | Components                                                                                                                              |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | `pkg/action`   | Button, ActionIcon, ActionIconGroup, CopyButton, Segmented                                                                              |
-| `pkg/field`    | Input, TextArea, InputNumber, InputPassword, InputOTP, Select, AutoComplete, SearchBar, HotkeyInput, EditableText, DatePicker, Calendar, Upload |
+| `pkg/field`    | Input, TextArea, InputNumber, InputPassword, InputOTP, Select, AutoComplete, SearchBar, HotkeyInput, EditableText, DatePicker, Calendar, Upload, ComboBox, TokenField, Stepper, TimePicker, DateRangePicker, ImageWell, RichTextEditor, RuleEditor |
 | `pkg/choice`   | Checkbox, RadioGroup, Switch, Slider, Rate, ToggleGroup, ColorSwatches, ColorPicker, ImageSelect                                        |
-| `pkg/display`  | Text, Tag, Avatar, GroupAvatar, AgentAvatar, Icon, Hotkey, Image, List, Accordion, Empty, Skeleton                                      |
-| `pkg/feedback` | Alert, Badge, Progress, Spin, Result, Modal, Drawer, Toast, FloatingPanel, FloatingSheet                                                |
+| `pkg/display`  | Text, Tag, Avatar, GroupAvatar, AgentAvatar, Icon, Hotkey, Image, List, Accordion, Empty, Skeleton, Table, Outline, OutlineTable, CollectionView, ColumnView, Chart |
+| `pkg/feedback` | Alert, Badge, Progress, Spin, Result, Modal, Drawer, Toast, FloatingPanel, FloatingSheet, LevelIndicator |
 | `pkg/overlay`  | Tooltip, Popover, DropdownMenu, ContextMenu                                                                                             |
-| `pkg/nav`      | Tabs, Pagination, Breadcrumb, Steps, Burger                                                                                             |
-| `pkg/layout`   | Block, Grid, Divider, ScrollArea, DraggablePanel, Header, SideNav, DraggableSideNav, Layout, GuideCard, SortableList                    |
+| `pkg/nav`      | Tabs, Pagination, Breadcrumb, Steps, Burger, PathControl |
+| `pkg/layout`   | Block, Grid, Divider, ScrollArea, DraggablePanel, Header, SideNav, DraggableSideNav, Layout, GuideCard, SortableList, SplitView, Inspector, Toolbar |
+| `pkg/command`  | Shared toolbar, keyboard and native menu commands |
+| `pkg/desktop`  | Native sheets, panels, save dialogs, status items, macOS sharing, Font panel and Quick Look |
 | `pkg/code`     | Highlighter, Snippet, QRCode                                                                                                            |
 | `pkg/markdown` | Markdown, with streaming                                                                                                                |
 | `pkg/theme`    | Light and dark tokens, sizes, shadows                                                                                                   |
