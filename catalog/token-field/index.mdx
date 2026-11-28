@@ -1,0 +1,18 @@
+---
+title: TokenField
+description: Enter and remove a list of tags or recipients.
+category: Data Entry
+---
+
+import { GoDemo } from '../../docs/components/GoDemo';
+import { GoApi } from '../../docs/components/GoApi';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+Pass a slice to `field.TokenField`. Enter or comma turns typed text into a token. Backspace on an empty field removes the last token, and suggestions are available as people type.
+
+<GoDemo name="token-field/basic" title="Project labels" height={228} source={basic} />
+
+## API
+
+<GoApi data={api} name="TokenFieldProps" />

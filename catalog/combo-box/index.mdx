@@ -1,0 +1,18 @@
+---
+title: ComboBox
+description: Edit a custom value or choose from a drop-down list.
+category: Data Entry
+---
+
+import { GoDemo } from '../../docs/components/GoDemo';
+import { GoApi } from '../../docs/components/GoApi';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+The arrow in `field.ComboBox` opens every choice. Typing filters the list and edits the value, so people can also enter an option of their own.
+
+<GoDemo name="combo-box/basic" title="Export preset" height={245} source={basic} />
+
+## API
+
+<GoApi data={api} name="ComboBoxProps" />

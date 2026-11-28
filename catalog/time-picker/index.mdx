@@ -1,0 +1,20 @@
+---
+title: TimePicker
+description: Edit a time of day with bounded hour, minute and second fields.
+category: Data Entry
+---
+
+import { GoDemo } from '../../docs/components/GoDemo';
+import { GoApi } from '../../docs/components/GoApi';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+`field.TimePicker` edits a `TimeOfDay` without choosing a date or time zone. Enable `TwelveHour` for an AM or PM selector and `Seconds` for a separate seconds field.
+
+<GoDemo name="time-picker/basic" title="Reminder time" height={114} source={basic} />
+
+## API
+
+<GoApi data={api} name="TimePickerProps" />
+
+<GoApi data={api} name="TimeOfDay" />

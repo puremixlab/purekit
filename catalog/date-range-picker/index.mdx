@@ -1,0 +1,20 @@
+---
+title: DateRangePicker
+description: Select and review the two dates of a range.
+category: Data Entry
+---
+
+import { GoDemo } from '../../docs/components/GoDemo';
+import { GoApi } from '../../docs/components/GoApi';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+Choose the two days in the calendar. An earlier second day becomes the start. When editing an existing range, the first click begins a new one. The shaded days show the range between its endpoints.
+
+<GoDemo name="date-range-picker/basic" title="Report dates" height={470} source={basic} />
+
+## API
+
+<GoApi data={api} name="DatePickerProps" />
+
+<GoApi data={api} name="DateRange" />

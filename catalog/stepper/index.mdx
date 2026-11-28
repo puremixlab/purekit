@@ -1,0 +1,18 @@
+---
+title: Stepper
+description: Step a number up or down with a compact pair of arrows.
+category: Data Entry
+---
+
+import { GoDemo } from '../../docs/components/GoDemo';
+import { GoApi } from '../../docs/components/GoApi';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+`field.Stepper` changes a number within a range. Click or hold either arrow, or focus the stepper and press Up or Down.
+
+<GoDemo name="stepper/basic" title="Copies" height={100} source={basic} />
+
+## API
+
+<GoApi data={api} name="StepperProps" />
