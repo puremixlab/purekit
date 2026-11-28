@@ -35,7 +35,7 @@ var documents = map[string][]document{
 
 var columns = []ui.TableColumn{
 	{ID: "name", Title: "Name", MinWidth: 128, Sortable: true},
-	{ID: "kind", Title: "Kind", Width: 102, Sortable: true},
+	{ID: "kind", Title: "Kind", Width: 120, Sortable: true},
 	{ID: "size", Title: "Size", Width: 69, Align: ui.End, Sortable: true},
 }
 

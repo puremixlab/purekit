@@ -19,7 +19,10 @@ export default {
         image: new URL('/og.png', siteUrl).href,
       },
     },
-    navItems: [{ href: '/getting-started', icon: 'rocket', label: 'Getting Started' }],
+    navItems: [
+      { href: '/getting-started', icon: 'rocket', label: 'Getting Started' },
+      { href: '/native-desktop', icon: 'monitor', label: 'Native desktop' },
+    ],
     prefersColor: 'auto',
     socialLinks: [{ href: repositoryUrl, icon: 'github', label: 'GitHub' }],
   },

@@ -9,8 +9,9 @@ import (
 )
 
 var shareDelegateClass = sync.OnceValues(func() (objc.Class, error) {
-	return objc.RegisterClass("PureKitSharingPickerDelegate", objc.GetClass("NSObject"), nil, nil, []objc.MethodDef{
+	return objc.RegisterClass("PureKitSharingPickerDelegate", objc.GetClass("NSObject"), nativeProtocols("NSSharingServicePickerDelegate"), nil, []objc.MethodDef{
 		{Cmd: selector("sharingServicePicker:didChooseSharingService:"), Fn: shareServiceChosen},
+		{Cmd: selector("pureKitShareWindowClosed:"), Fn: shareWindowClosed},
 	})
 })
 
@@ -50,6 +51,7 @@ func ShowShare(parent *mygo.Window, p ShareProps) error {
 			return ErrUnavailable
 		}
 		sharePicker, shareDelegate = picker, send(objc.ID(delegateClass), "new")
+		observeClose(shareDelegate, window, "pureKitShareWindowClosed:")
 		send(picker, "setDelegate:", shareDelegate)
 		bounds := objc.Send[nsRect](view, selector("bounds"))
 		rect := nsRect{
@@ -66,10 +68,21 @@ func ShowShare(parent *mygo.Window, p ShareProps) error {
 }
 
 func shareServiceChosen(delegate objc.ID, _ objc.SEL, picker, _ objc.ID) {
-	if picker != sharePicker || delegate != shareDelegate {
-		return
+	if picker == sharePicker && delegate == shareDelegate {
+		finishShare()
 	}
+}
+
+func shareWindowClosed(delegate objc.ID, _ objc.SEL, _ objc.ID) {
+	if delegate == shareDelegate {
+		finishShare()
+	}
+}
+
+func finishShare() {
+	picker, delegate := sharePicker, shareDelegate
 	sharePicker, shareDelegate = 0, 0
+	send(notificationCenter(), "removeObserver:", delegate)
 	send(picker, "setDelegate:", objc.ID(0))
 	send(picker, "autorelease")
 	send(delegate, "autorelease")

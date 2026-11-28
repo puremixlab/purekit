@@ -36,7 +36,7 @@ var loadQuickLook = sync.OnceValue(func() error {
 })
 
 var quickLookControllerClass = sync.OnceValues(func() (objc.Class, error) {
-	return objc.RegisterClass("PureKitQuickLookController", objc.GetClass("NSResponder"), nil, nil, []objc.MethodDef{
+	return objc.RegisterClass("PureKitQuickLookController", objc.GetClass("NSResponder"), nativeProtocols("QLPreviewPanelDataSource"), nil, []objc.MethodDef{
 		{Cmd: selector("acceptsPreviewPanelControl:"), Fn: acceptsPreview},
 		{Cmd: selector("beginPreviewPanelControl:"), Fn: beginPreview},
 		{Cmd: selector("endPreviewPanelControl:"), Fn: endPreview},
@@ -90,9 +90,10 @@ func ShowQuickLook(parent *mygo.Window, paths []string) error {
 		}
 		send(window, "makeKeyWindow")
 		send(panel, "updateController")
+		alreadyVisible := objc.Send[bool](panel, selector("isVisible"))
 		send(panel, "makeKeyAndOrderFront:", objc.ID(0))
 		if s := activeQuickLook; s == nil || send(panel, "currentController") != s.controller {
-			finishQuickLook(true)
+			finishQuickLook(!alreadyVisible)
 			return errors.New("the parent window could not take control of Quick Look")
 		}
 		send(panel, "reloadData")

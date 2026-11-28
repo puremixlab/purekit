@@ -56,6 +56,13 @@ func readString(value objc.ID) string {
 	return objc.Send[string](value, selector("UTF8String"))
 }
 
+func nativeProtocols(name string) []*objc.Protocol {
+	if protocol := objc.GetProtocol(name); protocol != nil {
+		return []*objc.Protocol{protocol}
+	}
+	return nil
+}
+
 func mainThread(work func() error) error {
 	if err := nativeReady(); err != nil {
 		return err
