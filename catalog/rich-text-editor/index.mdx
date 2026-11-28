@@ -1,0 +1,18 @@
+---
+title: RichTextEditor
+description: Edit formatted documents with a shared formatting toolbar.
+category: Data Entry
+---
+
+import { GoDemo } from '../../docs/components/GoDemo';
+import { GoApi } from '../../docs/components/GoApi';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+Keep a MyGo `richtext.Document` for the editing session. The toolbar formats the selection and the editor supports typing, keyboard formatting, undo and rich clipboard content.
+
+<GoDemo name="rich-text-editor/basic" title="Release note" height={269} source={basic} />
+
+## API
+
+<GoApi data={api} name="RichTextEditorProps" />

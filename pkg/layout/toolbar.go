@@ -18,6 +18,8 @@ type ToolbarProps struct {
 	Label string
 	// Leading and Trailing hold the command groups at either end of the bar.
 	Leading, Trailing []ToolbarGroup
+	// KeepFocus leaves a text selection focused when a toolbar button is clicked.
+	KeepFocus bool
 }
 
 // Toolbar displays groups of shared commands in a window or a content pane.
@@ -25,10 +27,10 @@ type ToolbarProps struct {
 func Toolbar(c *ui.Context, p ToolbarProps) ui.Element {
 	tk := theme.TokensOf(c)
 	return ui.Toolbar(c, func() {
-		toolbarGroups(c, p.Leading, false)
+		toolbarGroups(c, p.Leading, false, p.KeepFocus)
 		if len(p.Trailing) > 0 {
 			ui.Spacer(c)
-			toolbarGroups(c, p.Trailing, true)
+			toolbarGroups(c, p.Trailing, true, p.KeepFocus)
 		}
 	}).Label(p.Label).FillWidth().Padding(6, 8).Gap(10).
 		Background(tk.BgContainer).BorderWidth(0, 0, 1, 0).BorderColor(tk.BorderSecondary)
@@ -39,7 +41,7 @@ type toolbarGroupKey struct {
 	index    int
 }
 
-func toolbarGroups(c *ui.Context, groups []ToolbarGroup, trailing bool) {
+func toolbarGroups(c *ui.Context, groups []ToolbarGroup, trailing, keepFocus bool) {
 	for i, group := range groups {
 		groupContext := c.Key(toolbarGroupKey{trailing: trailing, index: i})
 		ui.Row(groupContext).AlignItems(ui.Center).Gap(3).Children(func() {
@@ -48,19 +50,22 @@ func toolbarGroups(c *ui.Context, groups []ToolbarGroup, trailing bool) {
 				if cmd.ID != "" {
 					key = groupContext.Key(cmd.ID)
 				}
-				toolbarCommand(key, cmd)
+				toolbarCommand(key, cmd, keepFocus)
 			}
 		})
 	}
 }
 
-func toolbarCommand(c *ui.Context, cmd command.Command) {
+func toolbarCommand(c *ui.Context, cmd command.Command, keepFocus bool) {
 	enabled, checked := cmd.Available(), cmd.Checked != nil && cmd.Checked()
 	var button ui.Element
 	if cmd.Checked != nil {
 		button = ui.ToggleBase(c, &checked)
 	} else {
 		button = ui.ButtonBase(c)
+	}
+	if keepFocus {
+		button.KeepFocus()
 	}
 	variant := action.Text
 	if checked {

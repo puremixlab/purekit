@@ -1,0 +1,20 @@
+---
+title: Chart
+description: Display a categorical series as bars or a line.
+category: Data Views
+---
+
+import { GoDemo } from '../../docs/components/GoDemo';
+import { GoApi } from '../../docs/components/GoApi';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+Provide labels and values in display order. Hover over the plot or focus it and use the arrow keys to inspect each value. Set `Kind` to `display.ChartLine` for a line chart.
+
+<GoDemo name="chart/basic" title="Document activity" height={255} source={basic} />
+
+## API
+
+<GoApi data={api} name="ChartProps" />
+
+<GoApi data={api} name="ChartPoint" />

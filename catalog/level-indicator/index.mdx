@@ -1,0 +1,18 @@
+---
+title: LevelIndicator
+description: Show a measured level with warning and critical thresholds.
+category: Feedback
+---
+
+import { GoDemo } from '../../docs/components/GoDemo';
+import { GoApi } from '../../docs/components/GoApi';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+Use a level indicator for a measured quantity such as storage, capacity or volume. Set `Warning` and `Critical` to announce when the level crosses those thresholds.
+
+<GoDemo name="level-indicator/basic" title="Storage capacity" height={94} source={basic} />
+
+## API
+
+<GoApi data={api} name="LevelIndicatorProps" />
