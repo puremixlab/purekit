@@ -24,6 +24,7 @@ type PathControlProps struct {
 }
 
 type pathComponent struct{ path, label string }
+type pathOverflowKey struct{}
 
 // PathControl shows a file system location with a button for each parent and the current
 // location. Long paths put the middle components in a dropdown.
@@ -47,7 +48,7 @@ func PathControl(c *ui.Context, p PathControlProps) ui.Element {
 			for _, component := range hidden {
 				items = append(items, overlay.MenuItem{Key: component.path, Label: component.label})
 			}
-			chosen := overlay.DropdownMenu(c.Key("parents"), open, overlay.DropdownMenuProps{Items: items}, func(b ui.Element) {
+			chosen := overlay.DropdownMenu(c.Key(pathOverflowKey{}), open, overlay.DropdownMenuProps{Items: items}, func(b ui.Element) {
 				action.StyleButton(c, b.Label(l10n.Text(c, "pathParents")), "…",
 					action.ButtonProps{Variant: action.Text, Size: theme.Small})
 			})
