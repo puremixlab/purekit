@@ -1,0 +1,18 @@
+---
+title: PathControl
+description: Navigate the parents of a file system path and accept drops on path components.
+category: Navigation
+---
+
+import { GoDemo } from '../../docs/components/GoDemo';
+import { GoApi } from '../../docs/components/GoApi';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+Use the selected component's full path to navigate. A long path puts its middle folders in a menu. Install `OnDrop` to receive a destination path and the files dropped there.
+
+<GoDemo name="path-control/basic" title="Asset path" height={224} source={basic} />
+
+## API
+
+<GoApi data={api} name="PathControlProps" />

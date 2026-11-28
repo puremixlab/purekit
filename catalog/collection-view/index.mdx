@@ -1,0 +1,20 @@
+---
+title: CollectionView
+description: A selectable grid of virtualized tiles with keyboard navigation.
+category: Data Views
+---
+
+import { GoDemo } from '../../docs/components/GoDemo';
+import { GoApi } from '../../docs/components/GoApi';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+Pass stable keys and a tile builder to `display.CollectionView`. Use arrow keys to move, Command or Ctrl-click to toggle an item, and Shift to select a range when `Multiple` is set.
+
+<GoDemo name="collection-view/basic" title="Project files" height={300} source={basic} />
+
+## API
+
+<GoApi data={api} name="CollectionViewProps" />
+
+<GoApi data={api} name="CollectionState" />
