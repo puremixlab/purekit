@@ -2,14 +2,14 @@ package header
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/layout"
-	"github.com/lobehub/lobe-mygo/pkg/lucide"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/layout"
+	"github.com/puremixlab/purekit/pkg/lucide"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func logo(c *ui.Context) {
-	ui.Text(c, "LobeHub").FontSize(18).FontWeight(700)
+	ui.Text(c, "PureKit").FontSize(18).FontWeight(700)
 }
 
 func actions(c *ui.Context) {

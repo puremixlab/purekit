@@ -1,6 +1,6 @@
 package slider
 
-import "github.com/lobehub/lobe-mygo/catalog/registry"
+import "github.com/puremixlab/purekit/catalog/registry"
 
 func init() {
 	registry.Add("slider/basic", Basic)

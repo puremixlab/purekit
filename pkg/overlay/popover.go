@@ -2,8 +2,8 @@ package overlay
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/motion"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/motion"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 type PopoverProps struct {

@@ -1,0 +1,36 @@
+diff --git a/site/components/DocsShell/DocsShell.tsx b/site/components/DocsShell/DocsShell.tsx
+index 9871e55a0654c0a1df4f382c10c501a5d009eb63..524110a7dfe0339ce8ed09f17cf01f9de6d73a69 100644
+--- a/site/components/DocsShell/DocsShell.tsx
++++ b/site/components/DocsShell/DocsShell.tsx
+@@ -1,7 +1,6 @@
+ import './DocsShell.css';
+ 
+ import { Hotkey, ScrollArea, type ScrollAreaViewportProps } from '@lobehub/ui';
+-import { LobeHub } from '@lobehub/ui/brand';
+ import { Breadcrumb, ConsoleBrand, ConsoleNav, ConsoleShell } from '@lobehub/ui/dashboard';
+ import { GithubIcon } from '@lobehub/ui/icons';
+ import * as stylex from '@stylexjs/stylex';
+@@ -88,15 +87,21 @@ export function DocsShell({ children, documents, navigation, onSearchOpen }: Doc
+   const themeConfig = siteConfig.themeConfig;
+   const actions = themeConfig?.actions ?? [];
+   const githubSocialLink = themeConfig?.socialLinks?.find((link) => link.icon === 'github');
+-  const productName = siteConfig.title.replace(/^Lobe(?:Hub)?\s+/i, '') || siteConfig.title;
+   const showThemeMenu = (themeConfig?.prefersColor ?? 'auto') === 'auto';
+ 
+   const brand = (
+     <ConsoleBrand
+       label={`${siteConfig.title} documentation home`}
+       logo={
+-        <LobeHub className="docs-brand-logo" extra={productName} size={LOGO_SIZE} type="combine" />
++        <img
++          alt=""
++          className="docs-brand-logo"
++          height={LOGO_SIZE}
++          src={siteConfig.favicons?.icon ?? '/favicon.ico'}
++          width={LOGO_SIZE}
++        />
+       }
++      title={siteConfig.title}
+       renderLink={({ children: content, href, ...linkProps }) => (
+         <Link {...linkProps} to={href}>
+           {content}

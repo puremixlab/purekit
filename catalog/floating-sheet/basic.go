@@ -4,10 +4,10 @@ import (
 	"fmt"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/feedback"
-	"github.com/lobehub/lobe-mygo/pkg/lucide"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/feedback"
+	"github.com/puremixlab/purekit/pkg/lucide"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func notes(c *ui.Context, tk *theme.Tokens) {

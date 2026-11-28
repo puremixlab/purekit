@@ -5,9 +5,9 @@ import (
 	"strconv"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/internal/l10n"
-	"github.com/lobehub/lobe-mygo/pkg/lucide"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/internal/l10n"
+	"github.com/puremixlab/purekit/pkg/lucide"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func viewerPill(c *ui.Context, tk *theme.Tokens) ui.Element {

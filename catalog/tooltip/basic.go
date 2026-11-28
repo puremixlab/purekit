@@ -2,8 +2,8 @@ package tooltip
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/overlay"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/overlay"
 )
 
 func Basic(c *ui.Context) {

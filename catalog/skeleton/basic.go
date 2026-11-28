@@ -2,7 +2,7 @@ package skeleton
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/display"
+	"github.com/puremixlab/purekit/pkg/display"
 )
 
 func Basic(c *ui.Context) {

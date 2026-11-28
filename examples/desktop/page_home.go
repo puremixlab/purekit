@@ -4,9 +4,9 @@ import (
 	"strconv"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/examples/desktop/locales"
-	"github.com/lobehub/lobe-mygo/pkg/display"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/examples/desktop/locales"
+	"github.com/puremixlab/purekit/pkg/display"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 type recentItem struct {

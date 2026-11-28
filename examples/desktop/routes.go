@@ -4,8 +4,8 @@ import (
 	"strings"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/examples/desktop/locales"
-	"github.com/lobehub/lobe-mygo/pkg/lucide"
+	"github.com/puremixlab/purekit/examples/desktop/locales"
+	"github.com/puremixlab/purekit/pkg/lucide"
 )
 
 type text func(m locales.Messages) string

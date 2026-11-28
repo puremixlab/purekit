@@ -4,13 +4,13 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/markdown"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/markdown"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 const streamed = "Streaming fits a chat reply: text comes in at an **even pace**, each character fading in, and `half-written syntax` shows as it will most likely end.\n\n" +
-	"- Lists grow item by item\n- Links like [LobeHub](https://lobehub.com) appear once complete\n- Code blocks grow line by line\n\n" +
+	"- Lists grow item by item\n- Links like [PureKit](https://github.com/puremixlab/purekit) appear once complete\n- Code blocks grow line by line\n\n" +
 	"```go\nfunc reply(w io.Writer, words []string) {\n\tfor _, w := range words {\n\t\tfmt.Fprint(w, w, \" \")\n\t}\n}\n```\n\n" +
 	"| Preset | Catch-up |\n| --- | --- |\n| Realtime | 40 ms |\n| Balanced | 120 ms |\n| Silky | 170 ms |\n\n" +
 	"That is the whole reply."

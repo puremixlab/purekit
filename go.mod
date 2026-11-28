@@ -1,4 +1,4 @@
-module github.com/lobehub/lobe-mygo
+module github.com/puremixlab/purekit
 
 go 1.27.3
 

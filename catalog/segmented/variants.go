@@ -2,8 +2,8 @@ package segmented
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 var picks = make([]int, 4)

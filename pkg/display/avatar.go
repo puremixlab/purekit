@@ -7,7 +7,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 type AvatarShape int

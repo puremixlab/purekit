@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/internal/testkit"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/internal/testkit"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 var red = ui.RGB(230, 30, 30)

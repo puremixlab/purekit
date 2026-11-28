@@ -2,7 +2,7 @@ package badge
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/feedback"
+	"github.com/puremixlab/purekit/pkg/feedback"
 )
 
 func Status(c *ui.Context) {

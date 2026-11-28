@@ -5,11 +5,11 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/field"
-	"github.com/lobehub/lobe-mygo/pkg/lucide"
-	"github.com/lobehub/lobe-mygo/pkg/markdown"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/field"
+	"github.com/puremixlab/purekit/pkg/lucide"
+	"github.com/puremixlab/purekit/pkg/markdown"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 const streamStep = 12 * time.Millisecond

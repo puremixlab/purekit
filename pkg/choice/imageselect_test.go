@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/internal/testkit"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/internal/testkit"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func solidBitmap(c ui.Color) *ui.Bitmap { return solidSized(c, 8, 8) }

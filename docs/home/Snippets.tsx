@@ -8,7 +8,7 @@ const ITEMS: CodeShowcaseItem[] = snippets.map((snippet) => ({
   key: snippet.key,
   label: snippet.label,
   language: 'go',
-  preview: <Shot alt={`${snippet.label} rendered by Lobe MyGo`} name={snippet.image} width={480} />,
+  preview: <Shot alt={`${snippet.label} rendered by PureKit`} name={snippet.image} width={480} />,
 }));
 
 export function Snippets() {

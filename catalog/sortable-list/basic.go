@@ -2,9 +2,9 @@ package sortablelist
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/layout"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/layout"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 type task struct {

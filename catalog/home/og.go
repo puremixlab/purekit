@@ -1,105 +1,94 @@
 package home
 
 import (
-	_ "embed"
-	"sync"
-
 	"github.com/egoist/mygo/ui"
+	"github.com/puremixlab/purekit/pkg/action"
 )
 
 var (
-	//go:embed logo.png
-	logoPNG []byte
-	//go:embed og-art.png
-	ogArtPNG []byte
-	//go:embed banner-art.png
-	bannerArtPNG []byte
+	ogHeadline    = [2]string{"Native UI", "for Go Apps"}
+	ogDescription = [2]string{"Components, tokens, and motion", "for desktop apps built with MyGo."}
 )
 
-func decoded(b []byte) func() ui.ImageSource {
-	return sync.OnceValue(func() ui.ImageSource {
-		img, err := ui.DecodeImage(b)
-		if err != nil {
-			panic(err)
-		}
-		return img
+var coverBackground = ui.Hex("#101D1A")
+var coverAccent = ui.Hex("#B6F2D0")
+
+// BrandMark draws the mark used by the docs, covers, and catalog showcase.
+func BrandMark(c *ui.Context, size float32) {
+	ui.Box(c).Size(size, size).Shrink(0).Radius(size * 0.23).Background(ui.Hex("#204338")).Children(func() {
+		ui.Box(c).Absolute().Left(size*0.24).Top(size*0.23).
+			Size(size*0.17, size*0.54).Radius(size * 0.04).Background(coverAccent)
+		ui.Box(c).Absolute().Left(size*0.49).Top(size*0.23).
+			Size(size*0.27, size*0.28).Radius(size * 0.07).Background(coverAccent)
 	})
 }
 
-var (
-	logo      = decoded(logoPNG)
-	ogArt     = decoded(ogArtPNG)
-	bannerArt = decoded(bannerArtPNG)
-)
-
-var (
-	ogHeadline    = [2]string{"The UI Kit For", "Native Go Apps"}
-	ogDescription = [2]string{"LobeHub's open-source Go component library for", "native desktop apps, drawn on the GPU."}
-)
-
-var bangs = []struct {
-	color string
-	tilt  float32
-}{{"#589CBC", 7}, {"#E67183", 9}, {"#40A844", 4}, {"#B2913B", 11}, {"#7777AA", -8}}
-
-func bangMarks(c *ui.Context, k float32) {
-	ui.Row(c).Gap(7 * k).Children(func() {
-		for i, b := range bangs {
-			color := ui.Hex(b.color)
-			ui.Column(c.Key(i)).Gap(5 * k).AlignItems(ui.Center).Rotate(b.tilt).Children(func() {
-				ui.Box(c).Size(14*k, 46*k).Radius(2 * k).Background(color)
-				ui.Box(c).Size(14*k, 13*k).Radius(2 * k).Background(color)
-			})
-		}
-	})
-}
-
-// OG is the site's social preview, after lobe-ui's: the name and promise on the left over an
-// illustration of the LobeHub mascot juggling MyGo's five marks.
+// OG renders the site's social preview.
 func OG(c *ui.Context) {
-	ui.Box(c).Fill().Background(ui.Hex("#050505")).Clip().Children(func() {
-		ui.Image(c, ogArt()).Absolute().Left(0).Top(0).Size(1280, 640).Label("art")
+	ui.Box(c).Fill().Background(coverBackground).Clip().Children(func() {
 		ogText(c)
+		coverPreview(c)
 	})
 }
 
-// Banner is the README's header, after lobe-ui's: the social card's text over a wider cut of the
-// art, on a rounded card whose corners stay transparent.
+// Banner renders the README header with transparent rounded corners.
 func Banner(c *ui.Context) {
-	ui.Box(c).Size(1474, 602).Radius(24).Background(ui.Hex("#050505")).Clip().Children(func() {
-		ui.Image(c, bannerArt()).Absolute().Left(0).Top(0).Size(1474, 602).Label("banner-art")
+	ui.Box(c).Size(1474, 602).Radius(24).Background(coverBackground).Clip().Children(func() {
 		ogText(c)
-		ui.Box(c).Absolute().Left(0).Top(0).Right(0).Bottom(0).Radius(24).Border(1, ui.RGBA(255, 255, 255, 0.12)).IgnoreInput(true)
+		coverPreview(c)
+		ui.Box(c).Absolute().Left(0).Top(0).Right(0).Bottom(0).Radius(24).
+			Border(1, ui.RGBA(255, 255, 255, 0.12)).IgnoreInput(true)
 	})
 }
 
 func ogText(c *ui.Context) {
-	white, grey := ui.Hex("#FFFFFF"), ui.Hex("#9B9BA1")
-	ui.Column(c).Absolute().Left(64).Top(104).Children(func() {
-		ui.Row(c).Gap(16).AlignItems(ui.Center).Children(func() {
-			ui.Image(c, logo()).Size(56, 56)
-			ui.Text(c, "/").FontSize(40).TextColor(ui.Hex("#5A5A60"))
-			bangMarks(c, 0.62)
-			ui.Text(c, "lobe-mygo").Font("Menlo").FontSize(34).FontWeight(700).TextColor(white)
-		})
+	white, grey := ui.Hex("#F4FCF7"), ui.Hex("#A8BFB5")
+	ui.Row(c).Absolute().Left(64).Top(104).Gap(16).AlignItems(ui.Center).Children(func() {
+		BrandMark(c, 56)
+		ui.Text(c, "PureKit").FontSize(34).FontWeight(700).TextColor(white)
 	})
 	const headlineWidth = 680 - 64
-	headlineFont := ui.Font{Family: "Helvetica Neue", Size: 76, Weight: 700}
+	font := ui.Font{Family: "system-ui", Size: 76, Weight: 700}
 	for _, line := range ogHeadline {
-		width, _ := ui.ShapeText(line, headlineFont, 0).Size()
+		width, _ := ui.ShapeText(line, font, 0).Size()
 		if width > headlineWidth {
-			headlineFont.Size *= headlineWidth / width
+			font.Size *= headlineWidth / width
 		}
 	}
-	ui.Column(c).Absolute().Left(64).Top(222).Children(func() {
+	ui.Column(c).Absolute().Left(64).Top(210).Children(func() {
 		for i, line := range ogHeadline {
-			ui.Text(c.Key(i), line).Font(headlineFont.Family).FontSize(headlineFont.Size).
-				FontWeight(headlineFont.Weight).LetterSpacing(-1.5).LineHeight(1.12).TextColor(white)
+			ui.Text(c.Key(i), line).Font(font.Family).FontSize(font.Size).
+				FontWeight(font.Weight).LetterSpacing(-1.5).LineHeight(1.12).TextColor(white)
 		}
 	})
-	ui.Column(c).Absolute().Left(64).Top(486).Children(func() {
+	ui.Column(c).Absolute().Left(64).Top(458).Children(func() {
 		for i, line := range ogDescription {
-			ui.Text(c.Key(i), line).FontSize(23).LineHeight(1.5).TextColor(grey)
+			ui.Text(c.Key(i), line).FontSize(24).LineHeight(1.4).TextColor(grey)
 		}
+	})
+}
+
+func coverPreview(c *ui.Context) {
+	border := ui.Hex("#3A5E51")
+	ui.Column(c).Absolute().Right(64).Top(138).Width(446).Padding(26).Gap(20).
+		Radius(26).Border(1, border).Background(ui.Hex("#1A3028")).Children(func() {
+		ui.Row(c).AlignItems(ui.Center).Gap(12).Children(func() {
+			BrandMark(c, 32)
+			ui.Text(c, "Components").FontSize(24).FontWeight(650).TextColor(ui.Hex("#F4FCF7"))
+		})
+		ui.Column(c).Gap(14).Padding(18).Radius(16).Border(1, border).
+			Background(coverBackground).Children(func() {
+			ui.Text(c, "Design tokens").FontSize(17).TextColor(ui.Hex("#C1D8CF"))
+			ui.Row(c).Gap(12).Children(func() {
+				for i, color := range []string{"#B6F2D0", "#7DCDB2", "#4F8F7A", "#31594B", "#243E34"} {
+					ui.Box(c.Key(i)).Size(51, 38).Radius(8).Background(ui.Hex(color))
+				}
+			})
+		})
+		ui.Row(c).Gap(12).Children(func() {
+			action.Button(c, "Primary", action.ButtonProps{Variant: action.Primary}).
+				Background(coverAccent).TextColor(coverBackground)
+			action.Button(c, "Outlined", action.ButtonProps{}).Border(1, border).TextColor(ui.Hex("#F4FCF7"))
+		})
 	})
 }

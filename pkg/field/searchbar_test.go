@@ -4,9 +4,9 @@ import (
 	"testing"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/display"
-	"github.com/lobehub/lobe-mygo/pkg/internal/testkit"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/display"
+	"github.com/puremixlab/purekit/pkg/internal/testkit"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func searchTester(q *string, p SearchBarProps) *ui.Tester {

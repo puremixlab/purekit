@@ -4,10 +4,10 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/internal/l10n"
-	"github.com/lobehub/lobe-mygo/pkg/lucide"
-	"github.com/lobehub/lobe-mygo/pkg/overlay"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/internal/l10n"
+	"github.com/puremixlab/purekit/pkg/lucide"
+	"github.com/puremixlab/purekit/pkg/overlay"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 type DatePickerProps struct {

@@ -2,11 +2,11 @@ package main
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/examples/desktop/locales"
-	"github.com/lobehub/lobe-mygo/pkg/display"
-	"github.com/lobehub/lobe-mygo/pkg/lucide"
-	"github.com/lobehub/lobe-mygo/pkg/motion"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/examples/desktop/locales"
+	"github.com/puremixlab/purekit/pkg/display"
+	"github.com/puremixlab/purekit/pkg/lucide"
+	"github.com/puremixlab/purekit/pkg/motion"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 var workspaceStats = []struct {

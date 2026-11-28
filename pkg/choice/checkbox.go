@@ -1,7 +1,7 @@
 package choice
 
 import (
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/theme"
 	"time"
 
 	"github.com/egoist/mygo/ui"

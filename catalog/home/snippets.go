@@ -4,9 +4,9 @@ import (
 	"fmt"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/display"
-	"github.com/lobehub/lobe-mygo/pkg/markdown"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/display"
+	"github.com/puremixlab/purekit/pkg/markdown"
 )
 
 // Snippet is a code sample of the home page with the scene it renders, kept side by side so the
@@ -18,7 +18,7 @@ type Snippet struct {
 
 var helloCount = 3
 
-const snippetReply = "Rendered by **Lobe MyGo**:\n\n- Lists and `inline code`\n- Tables and code blocks\n\n```go\nfmt.Println(\"hello\")\n```"
+const snippetReply = "Rendered by **PureKit**:\n\n- Lists and `inline code`\n- Tables and code blocks\n\n```go\nfmt.Println(\"hello\")\n```"
 
 var Snippets = []Snippet{
 	{Key: "button", Label: "Button", Code: `var (

@@ -1,11 +1,11 @@
 package field
 
 import (
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/theme"
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/motion"
+	"github.com/puremixlab/purekit/pkg/motion"
 )
 
 type InputVariant int

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Rebranded the kit and its documentation as PureKit. Import components from the `github.com/puremixlab/purekit` Go module.
+
 - Button with six variants and three sizes.
 - Lobe UI tokens generated into Go.
 - `theme.Config` applies an app's own light and dark tokens, and `PrimaryForeground` sets the label color on solid primary surfaces.

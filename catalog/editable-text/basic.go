@@ -2,7 +2,7 @@ package editabletext
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/field"
+	"github.com/puremixlab/purekit/pkg/field"
 )
 
 var (

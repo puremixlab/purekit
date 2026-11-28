@@ -4,11 +4,11 @@ import (
 	"fmt"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/display"
-	"github.com/lobehub/lobe-mygo/pkg/layout"
-	"github.com/lobehub/lobe-mygo/pkg/lucide"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/display"
+	"github.com/puremixlab/purekit/pkg/layout"
+	"github.com/puremixlab/purekit/pkg/lucide"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 var pages = []display.ListItem{
@@ -28,7 +28,7 @@ func Basic(c *ui.Context) {
 		layout.Layout(c, layout.LayoutProps{
 			Header: func() {
 				layout.Header(c, layout.HeaderProps{
-					Logo: func() { ui.Text(c, "LobeHub").FontSize(18).FontWeight(700) },
+					Logo: func() { ui.Text(c, "PureKit").FontSize(18).FontWeight(700) },
 					Nav: func() {
 						ui.Row(c).Gap(24).Children(func() {
 							ui.Text(c, "Docs")

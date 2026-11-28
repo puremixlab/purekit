@@ -2,11 +2,11 @@ package form
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/choice"
-	"github.com/lobehub/lobe-mygo/pkg/feedback"
-	"github.com/lobehub/lobe-mygo/pkg/field"
-	"github.com/lobehub/lobe-mygo/pkg/form"
-	"github.com/lobehub/lobe-mygo/pkg/lucide"
+	"github.com/puremixlab/purekit/pkg/choice"
+	"github.com/puremixlab/purekit/pkg/feedback"
+	"github.com/puremixlab/purekit/pkg/field"
+	"github.com/puremixlab/purekit/pkg/form"
+	"github.com/puremixlab/purekit/pkg/lucide"
 )
 
 type Profile struct {

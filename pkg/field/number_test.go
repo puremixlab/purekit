@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func numberTester(v *float64, p InputNumberProps) *ui.Tester {

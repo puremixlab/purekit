@@ -2,8 +2,8 @@ package main
 
 import (
 	"flag"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/theme"
 	"image/png"
 	"log"
 	"os"
@@ -58,7 +58,7 @@ func main() {
 		return
 	}
 	mygo.App.WhenReady(func() {
-		mygo.NewWindow(mygo.WindowOptions{Title: "lobe-mygo gallery", Width: 1120, Height: 200, Content: ui.View(view)})
+		mygo.NewWindow(mygo.WindowOptions{Title: "PureKit gallery", Width: 1120, Height: 200, Content: ui.View(view)})
 	})
 	if err := mygo.App.Run(); err != nil {
 		log.Fatal(err)

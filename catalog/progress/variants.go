@@ -2,7 +2,7 @@ package progress
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/feedback"
+	"github.com/puremixlab/purekit/pkg/feedback"
 )
 
 func Variants(c *ui.Context) {

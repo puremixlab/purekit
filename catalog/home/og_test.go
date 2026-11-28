@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func ogTester() *ui.Tester {
@@ -19,7 +19,7 @@ func ogTester() *ui.Tester {
 
 func TestOGLeftColumn(t *testing.T) {
 	tt := ogTester()
-	name, ok := tt.Find("lobe-mygo")
+	name, ok := tt.Find("PureKit")
 	if !ok || name.X > 260 || name.Y > 160 {
 		t.Errorf("name %+v, want at the top left after the marks", name)
 	}
@@ -33,14 +33,14 @@ func TestOGLeftColumn(t *testing.T) {
 		t.Errorf("description %+v, want under the headline at x 64", desc)
 	}
 	if right := max(first.X+first.W, second.X+second.W); right > 680 {
-		t.Errorf("headline reaches x %v, want it clear of the mascots", right)
+		t.Errorf("headline reaches x %v, want it clear of the component preview", right)
 	}
 }
 
-func TestOGArtFillsTheCard(t *testing.T) {
+func TestOGPreviewSitsBesideTheHeadline(t *testing.T) {
 	tt := ogTester()
-	art, ok := tt.Find("art")
-	if !ok || art.X != 0 || art.Y != 0 || art.W != 1280 || art.H != 640 {
-		t.Errorf("art %+v, want the illustration filling the card", art)
+	preview, ok := tt.Find("Components")
+	if !ok || preview.X < 680 || preview.X+preview.W > 1280 {
+		t.Errorf("component preview %+v, want it to the right of the headline", preview)
 	}
 }

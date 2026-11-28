@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/field"
+	"github.com/puremixlab/purekit/pkg/field"
 )
 
 var picked = time.Date(2026, time.November, 8, 0, 0, 0, 0, time.Local)

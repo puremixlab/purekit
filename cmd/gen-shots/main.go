@@ -1,6 +1,6 @@
 // Command gen-shots renders the docs site's images from real components: the home page's bento
 // tiles with transparent backgrounds and the live showcase's poster, in light and dark, the
-// social preview and the README banner.
+// social preview, the README banner and the site icons.
 package main
 
 import (
@@ -17,8 +17,8 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/catalog/home"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/catalog/home"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 const scale = 2
@@ -43,10 +43,27 @@ func main() {
 		write(filepath.Join(*out, "showcase-"+mode+".png"), shot(home.Showcase, 1100, 640, dark, nil, 20*time.Second))
 	}
 	writeSnippets(*data)
+	writeBrandIcons(filepath.Dir(*out))
 	write(filepath.Join(filepath.Dir(*out), "og.png"), halve(shotAt(home.OG, 1280, 640, 2, true, nil, time.Second)))
 	black := halve(shotAt(home.Banner, 1474, 602, 2, true, &color.RGBA{0, 0, 0, 255}, time.Second))
 	white := halve(shotAt(home.Banner, 1474, 602, 2, true, &color.RGBA{255, 255, 255, 255}, time.Second))
 	write(*banner, unmatte(black, white))
+}
+
+func writeBrandIcons(dir string) {
+	for _, icon := range []struct {
+		name string
+		size float32
+	}{
+		{"favicon-16x16.png", 16},
+		{"favicon-32x32.png", 32},
+		{"apple-touch-icon.png", 180},
+	} {
+		view := func(c *ui.Context) { home.BrandMark(c, icon.size) }
+		black := halve(shot(view, icon.size, icon.size, true, &color.RGBA{0, 0, 0, 255}, 0))
+		white := halve(shot(view, icon.size, icon.size, true, &color.RGBA{255, 255, 255, 255}, 0))
+		write(filepath.Join(dir, icon.name), unmatte(black, white))
+	}
 }
 
 type snippet struct {

@@ -4,7 +4,7 @@ import (
 	"unicode"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 type InputOTPProps struct {

@@ -5,15 +5,15 @@ import { renderLink } from './renderLink';
 
 const ITEMS: FeatureGridItem[] = [
   {
-    description: 'Buttons, inputs, menus, overlays, chat views and more that look and move like their React counterparts.',
+    description: 'Buttons, inputs, menus, overlays, and layout components for native Go apps.',
     icon: Palette,
-    title: 'Lobe UI, in Go',
+    title: 'Native Go components',
   },
   {
-    description: 'Colors, radii and type sizes are generated from @lobehub/ui, so a Go app and a web app share one look.',
+    description: 'Customize the colors, radii, and type sizes shared by the components.',
     href: '/components/tokens',
     icon: SwatchBook,
-    title: 'Same tokens as Lobe UI',
+    title: 'Shared design tokens',
   },
   {
     description: 'theme.Apply follows the system appearance; every component reads its tokens from the theme.',

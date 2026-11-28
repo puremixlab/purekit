@@ -2,7 +2,7 @@ package markdown
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/markdown"
+	"github.com/puremixlab/purekit/pkg/markdown"
 )
 
 const snippets = "With FullFeaturedCodeBlock every block gets the header: its language, Copy and a toggle that collapses it.\n\n" +

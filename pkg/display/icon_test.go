@@ -1,12 +1,12 @@
 package display
 
 import (
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/theme"
 	"testing"
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/lucide"
+	"github.com/puremixlab/purekit/pkg/lucide"
 )
 
 func iconBox(t *testing.T, view func(c *ui.Context)) (ui.Rect, *ui.Tester) {

@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/internal/testkit"
+	"github.com/puremixlab/purekit/pkg/internal/testkit"
 )
 
 func TestCopyButtonCopiesAndConfirms(t *testing.T) {
