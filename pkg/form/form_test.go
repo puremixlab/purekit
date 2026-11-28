@@ -90,6 +90,19 @@ func (h *harness) click(name string) {
 	h.settle()
 }
 
+func (h *harness) waitForValidation() {
+	h.t.Helper()
+	deadline := time.Now().Add(5 * time.Second)
+	for h.f.busy() || h.f.pendingSubmit != nil {
+		if time.Now().After(deadline) {
+			h.t.Fatal("timed out waiting for form validation")
+		}
+		// Advancing the tester's clock does not wait for the validation goroutine.
+		time.Sleep(time.Millisecond)
+		h.tt.Frame()
+	}
+}
+
 func TestFieldLayoutAndRequiredMark(t *testing.T) {
 	h := newHarness(t, Props[profile]{})
 	label, _ := h.tt.Find("Name")
@@ -146,6 +159,7 @@ func TestSubmitValidatesEverything(t *testing.T) {
 	h.f.Values.Name = ""
 	h.tt.Frame()
 	h.click("Submit")
+	h.waitForValidation()
 	if len(h.submitted) != 0 || !h.tt.HasText("This field is required") {
 		t.Fatalf("submitted %v texts %q, want blocked by the empty name", h.submitted, h.tt.Texts())
 	}
@@ -153,6 +167,7 @@ func TestSubmitValidatesEverything(t *testing.T) {
 	h.tt.Type("Grace")
 	h.tt.Frame()
 	h.click("Submit")
+	h.waitForValidation()
 	if len(h.submitted) != 1 || h.submitted[0].Name != "Grace" {
 		t.Errorf("submitted %v", h.submitted)
 	}
@@ -173,11 +188,12 @@ func TestAsyncValidationAndDirtyFooter(t *testing.T) {
 		t.Errorf("after typing: %q, want the unsaved notice", h.tt.Texts())
 	}
 	h.focus("name input")
-	h.settle()
+	h.waitForValidation()
 	if !h.tt.HasText("Taken") {
 		t.Fatalf("texts %q, want the async error", h.tt.Texts())
 	}
 	h.click("Submit")
+	h.waitForValidation()
 	if len(h.submitted) != 0 {
 		t.Error("submitted past the async error")
 	}
