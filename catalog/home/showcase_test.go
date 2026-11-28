@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/catalog/registry"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/catalog/registry"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func showcaseTester() *ui.Tester {

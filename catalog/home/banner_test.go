@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func TestBannerIsARoundedCardWithTheHeadline(t *testing.T) {
@@ -14,9 +14,9 @@ func TestBannerIsARoundedCardWithTheHeadline(t *testing.T) {
 	}, 1474, 602)
 	tt.SetDark(true)
 	tt.Frame()
-	art, ok := tt.Find("banner-art")
-	if !ok || art.X != 0 || art.Y != 0 || art.W != 1474 || art.H != 602 {
-		t.Errorf("art %+v, want the illustration filling the banner", art)
+	preview, ok := tt.Find("Components")
+	if !ok || preview.X < 680 || preview.X+preview.W > 1474 {
+		t.Errorf("component preview %+v, want it to the right of the headline", preview)
 	}
 	head, ok := tt.Find(ogHeadline[0])
 	if !ok || head.X != 64 || head.H < 60 {

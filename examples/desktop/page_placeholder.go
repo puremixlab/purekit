@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/display"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/display"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func placeholderPage(c *ui.Context, title, empty, hint string, icon *ui.SVG) {

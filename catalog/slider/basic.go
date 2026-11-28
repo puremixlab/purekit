@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/choice"
+	"github.com/puremixlab/purekit/pkg/choice"
 )
 
 var (

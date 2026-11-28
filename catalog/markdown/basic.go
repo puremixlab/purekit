@@ -2,10 +2,10 @@ package markdown
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/markdown"
+	"github.com/puremixlab/purekit/pkg/markdown"
 )
 
-const article = "# Lobe MyGo\n\n" +
+const article = "# PureKit\n\n" +
 	"Lobe UI for [mygo](https://github.com/egoist/mygo): **bold**, *italic*, ~~struck~~, `inline code` and a footnote[^1].\n\n" +
 	"## Lists\n\n- Immediate-mode views\n- Native and WebAssembly\n  - macOS, Windows, Linux\n  - Browsers\n\n" +
 	"1. Write the view\n2. Run it\n\n- [x] Highlighter\n- [ ] Mermaid\n\n" +

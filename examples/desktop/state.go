@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/lobehub/lobe-mygo/pkg/form"
+	"github.com/puremixlab/purekit/pkg/form"
 )
 
 const (

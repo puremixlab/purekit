@@ -1,17 +1,21 @@
 ---
 title: Getting Started
-description: Add Lobe MyGo to a Go module, open a window with a Lobe UI button, and find the components by package.
+description: Add PureKit to a Go module, open a native window with a button, and find the components by package.
 ---
 
-Lobe MyGo brings the [Lobe UI](https://ui.lobehub.com) design language to desktop apps built with [MyGo](https://github.com/egoist/mygo)'s native UI: no HTML, no JavaScript and no webview. Every component is drawn on the GPU in pure Go.
+PureKit is a UI component library for native [MyGo](https://github.com/egoist/mygo) apps. The components are drawn on the GPU in pure Go.
 
 ## Install
 
 ```bash
-go get github.com/lobehub/lobe-mygo
+go get github.com/puremixlab/purekit
 ```
 
-Lobe MyGo needs Go 1.27 or later.
+PureKit requires Go 1.27.3 or later.
+
+## Moving an existing app to PureKit
+
+Update the library imports to start with `github.com/puremixlab/purekit`, then add the module and run `go mod tidy`. If the app used a local `replace` for the upstream module, remove that old entry once the imports have moved.
 
 ## Your first window
 
@@ -24,8 +28,8 @@ import (
 
 	"github.com/egoist/mygo"
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 var count int
@@ -33,7 +37,7 @@ var count int
 func view(c *ui.Context) {
 	theme.Apply(c)
 	ui.Column(c).Fill().Center().Gap(12).Background(theme.TokensOf(c).BgContainer).Children(func() {
-		if action.Button(c, "Hello Lobe", action.ButtonProps{Variant: action.Primary}).Clicked() {
+		if action.Button(c, "Hello PureKit", action.ButtonProps{Variant: action.Primary}).Clicked() {
 			count++
 		}
 		ui.Text(c, fmt.Sprintf("Clicked %d times", count))
@@ -42,7 +46,7 @@ func view(c *ui.Context) {
 
 func main() {
 	mygo.App.WhenReady(func() {
-		mygo.NewWindow(mygo.WindowOptions{Title: "Hello Lobe", Width: 480, Height: 320, Content: ui.View(view)})
+		mygo.NewWindow(mygo.WindowOptions{Title: "Hello PureKit", Width: 480, Height: 320, Content: ui.View(view)})
 	})
 	if err := mygo.App.Run(); err != nil {
 		log.Fatal(err)
@@ -51,6 +55,8 @@ func main() {
 ```
 
 The view is a function MyGo calls for every frame, and the state is your own variables. Call `theme.Apply(c)` at the top of each view: it picks the light or dark theme from the system, and `theme.TokensOf(c)` gives you the matching design tokens.
+
+PureKit includes English and Simplified Chinese strings for its controls. An app can override or translate the messages through the existing `lobe.<key>` keys in its MyGo catalogs.
 
 ## Packages
 
@@ -71,3 +77,7 @@ The view is a function MyGo calls for every frame, and the state is your own var
 | `pkg/lucide`   | Lucide icons                                                                                                                            |
 
 Every component page in this site runs its demo live through WebAssembly, with the Go source one click away.
+
+## Attribution
+
+PureKit is based on [Lobe MyGo](https://github.com/lobehub/lobe-mygo) by LobeHub. The original copyright and permission notice are in the [MIT license](https://github.com/puremixlab/purekit/blob/main/LICENSE). The bundled icons carry the [Lucide and Feather notices](https://github.com/puremixlab/purekit/blob/main/pkg/lucide/LICENSE).

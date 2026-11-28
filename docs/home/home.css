@@ -1,3 +1,12 @@
+.purekit-accent {
+  color: #286857;
+  -webkit-text-fill-color: currentColor;
+}
+
+[data-theme='dark'] .purekit-accent {
+  color: #b6f2d0;
+}
+
 .mygo-shot {
   display: block;
   margin-inline: auto;

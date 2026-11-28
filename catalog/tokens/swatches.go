@@ -2,7 +2,7 @@ package tokens
 
 import (
 	"fmt"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/theme"
 	"strconv"
 	"strings"
 

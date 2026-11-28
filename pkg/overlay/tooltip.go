@@ -4,9 +4,9 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/display"
-	"github.com/lobehub/lobe-mygo/pkg/motion"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/display"
+	"github.com/puremixlab/purekit/pkg/motion"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 var tipContentTransition = ui.ElementTransition{Duration: 120 * time.Millisecond, Ease: motion.EaseOut, Enter: &ui.Motion{}}

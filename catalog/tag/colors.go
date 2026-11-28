@@ -2,7 +2,7 @@ package tag
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/display"
+	"github.com/puremixlab/purekit/pkg/display"
 )
 
 var presets = []display.TagColor{

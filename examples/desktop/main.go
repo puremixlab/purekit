@@ -5,9 +5,9 @@ import (
 
 	"github.com/egoist/mygo"
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/examples/desktop/locales"
-	"github.com/lobehub/lobe-mygo/pkg/feedback"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/examples/desktop/locales"
+	"github.com/puremixlab/purekit/pkg/feedback"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 var state = newApp()

@@ -12,7 +12,7 @@ const TILES = [
   { colSpan: 1, href: '/components/button', hint: 'variants · sizes', name: 'buttons', rowSpan: 1, title: 'Button', width: 260 },
   { colSpan: 1, href: '/components/group-avatar', hint: 'grids · corners', name: 'group', rowSpan: 1, title: 'GroupAvatar', width: 260 },
   { colSpan: 2, href: '/components/alert', hint: 'status colors', name: 'alerts', rowSpan: 1, title: 'Alert', width: 520 },
-  { colSpan: 2, href: '/components/color-swatches', hint: 'Lobe UI palette', name: 'swatches', rowSpan: 1, title: 'ColorSwatches · Tag', width: 520 },
+  { colSpan: 2, href: '/components/color-swatches', hint: 'theme colors', name: 'swatches', rowSpan: 1, title: 'ColorSwatches · Tag', width: 520 },
 ] as const;
 
 export function Gallery() {
@@ -28,7 +28,7 @@ export function Gallery() {
           rowSpan={tile.rowSpan}
           title={tile.title}
         >
-          <Shot alt={`${tile.title} rendered by Lobe MyGo`} name={tile.name} width={tile.width} />
+          <Shot alt={`${tile.title} rendered by PureKit`} name={tile.name} width={tile.width} />
         </BentoCard>
       ))}
     </BentoGrid>

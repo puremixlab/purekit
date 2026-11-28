@@ -2,7 +2,7 @@ package guidecard
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/layout"
+	"github.com/puremixlab/purekit/pkg/layout"
 )
 
 func Basic(c *ui.Context) {

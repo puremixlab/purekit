@@ -2,9 +2,9 @@ package motion
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/motion"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/motion"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 var shown = map[string]bool{}

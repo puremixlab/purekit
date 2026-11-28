@@ -2,7 +2,7 @@ package testkit
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func Over(dst, src ui.Color) ui.Color {

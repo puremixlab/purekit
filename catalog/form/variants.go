@@ -2,9 +2,9 @@ package form
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/choice"
-	"github.com/lobehub/lobe-mygo/pkg/form"
-	"github.com/lobehub/lobe-mygo/pkg/lucide"
+	"github.com/puremixlab/purekit/pkg/choice"
+	"github.com/puremixlab/purekit/pkg/form"
+	"github.com/puremixlab/purekit/pkg/lucide"
 )
 
 type Prefs struct {

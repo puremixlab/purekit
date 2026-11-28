@@ -2,7 +2,7 @@ package agentavatar
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/display"
+	"github.com/puremixlab/purekit/pkg/display"
 )
 
 var agents = []string{"Research", "Writer", "Coder", "Designer", "Translator", "Planner", "Reviewer", "Tutor", "Analyst", "Scout", "Editor", "Critic"}

@@ -9,7 +9,7 @@ export function ShowcaseFrame() {
         className="mygo-showcase-live"
         loading="lazy"
         src={mygoFrameSrc('home/showcase')}
-        title="A chat app built with Lobe MyGo, running live through WebAssembly"
+        title="A chat app built with PureKit, running live through WebAssembly"
       />
     </div>
   );

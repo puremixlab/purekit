@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/internal/testkit"
+	"github.com/puremixlab/purekit/pkg/internal/testkit"
 )
 
 func TestCopyButtonSpeaksChinese(t *testing.T) {

@@ -2,11 +2,11 @@ package burger
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/display"
-	"github.com/lobehub/lobe-mygo/pkg/lucide"
-	"github.com/lobehub/lobe-mygo/pkg/nav"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/display"
+	"github.com/puremixlab/purekit/pkg/lucide"
+	"github.com/puremixlab/purekit/pkg/nav"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 var items = []display.ListItem{
@@ -28,7 +28,7 @@ func Basic(c *ui.Context) {
 	st := ui.Local(root, "burger", func() state { return state{active: "chat"} })
 	root.Children(func() {
 		ui.Row(c).Height(64).PaddingX(16).AlignItems(ui.Center).Gap(8).Shrink(0).BorderWidth(0, 0, 1, 0).BorderColor(tk.BorderSecondary).Children(func() {
-			ui.Text(c, "LobeHub").FontSize(16).FontWeight(700).Grow(1)
+			ui.Text(c, "PureKit").FontSize(16).FontWeight(700).Grow(1)
 			nav.Burger(c, &st.open, nav.BurgerProps{Items: items, Active: st.active, Fullscreen: st.fullscreen,
 				OnSelect: func(k string) { st.active = k },
 				Footer: func() {

@@ -2,7 +2,7 @@ package highlighter
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/code"
+	"github.com/puremixlab/purekit/pkg/code"
 )
 
 func Basic(c *ui.Context) {

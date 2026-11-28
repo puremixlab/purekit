@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/internal/testkit"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/internal/testkit"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func accordionTester(open map[string]bool, p AccordionProps) *ui.Tester {

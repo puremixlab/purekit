@@ -5,11 +5,11 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/display"
-	"github.com/lobehub/lobe-mygo/pkg/layout"
-	"github.com/lobehub/lobe-mygo/pkg/lucide"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/display"
+	"github.com/puremixlab/purekit/pkg/layout"
+	"github.com/puremixlab/purekit/pkg/lucide"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 type showcase struct {
@@ -32,7 +32,7 @@ func newShowcase() showcase {
 	return showcase{width: 272, expanded: true, convs: convs, streaming: len(convs[0].messages) - 1}
 }
 
-// Showcase is the home page's live app: a chat client built from Lobe MyGo components.
+// Showcase is the home page's live app: a chat client built from PureKit components.
 func Showcase(c *ui.Context) {
 	tk := theme.TokensOf(c)
 	root := ui.Row(c).Absolute().Left(0).Top(0).Right(0).Bottom(0).AlignItems(ui.Stretch).Background(tk.BgContainer)
@@ -44,7 +44,7 @@ func Showcase(c *ui.Context) {
 		layout.DraggableSideNav(c, &st.width, &st.expanded, layout.DraggableSideNavProps{
 			MinWidth: 54,
 			MaxWidth: 320,
-			Header:   func(nav layout.SideNavState) { sideHeader(c, tk, nav) },
+			Header:   func(nav layout.SideNavState) { sideHeader(c, nav) },
 			Footer: func(layout.SideNavState) {
 				ui.Row(c).Padding(8, 9).Children(func() {
 					action.ActionIcon(c, lucide.Settings(), action.ActionIconProps{Title: "Settings"})
@@ -55,12 +55,12 @@ func Showcase(c *ui.Context) {
 	})
 }
 
-func sideHeader(c *ui.Context, tk *theme.Tokens, nav layout.SideNavState) {
+func sideHeader(c *ui.Context, nav layout.SideNavState) {
 	ui.Row(c).Height(56).Padding(0, 9).Gap(10).AlignItems(ui.Center).Children(func() {
-		display.Avatar(c, "🤯", display.AvatarProps{Size: 36, Background: tk.FillTertiary})
+		BrandMark(c, 36)
 		if nav.Expanded {
 			ui.Row(c).Grow(1).Basis(0).Gap(4).AlignItems(ui.Center).Opacity(1 - nav.Collapse).Children(func() {
-				ui.Text(c, "LobeHub").FontWeight(600).SingleLine().Grow(1).Basis(0)
+				ui.Text(c, "PureKit").FontWeight(600).SingleLine().Grow(1).Basis(0)
 				action.ActionIcon(c, lucide.SquarePen(), action.ActionIconProps{Title: "New chat", Size: theme.Small})
 			})
 		}

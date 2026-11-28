@@ -6,8 +6,8 @@ import (
 	"testing/synctest"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/field"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/field"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func TestNamedFieldRendersWithNilValue(t *testing.T) {

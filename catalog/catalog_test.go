@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/theme"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/catalog/registry"
+	"github.com/puremixlab/purekit/catalog/registry"
 )
 
 func TestCatalogRegistersEveryDemo(t *testing.T) {

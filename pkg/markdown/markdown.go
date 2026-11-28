@@ -7,8 +7,8 @@ import (
 
 	"github.com/egoist/mygo/ui"
 	mmd "github.com/egoist/mygo/ui/markdown"
-	"github.com/lobehub/lobe-mygo/pkg/code"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/code"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 type Variant int

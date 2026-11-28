@@ -2,8 +2,8 @@ package breadcrumb
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/nav"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/nav"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 var visited = "nothing yet"

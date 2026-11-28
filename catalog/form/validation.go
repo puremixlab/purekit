@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/field"
-	"github.com/lobehub/lobe-mygo/pkg/form"
+	"github.com/puremixlab/purekit/pkg/field"
+	"github.com/puremixlab/purekit/pkg/form"
 )
 
 type Account struct {

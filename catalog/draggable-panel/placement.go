@@ -2,8 +2,8 @@ package draggablepanel
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/layout"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/layout"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 var (

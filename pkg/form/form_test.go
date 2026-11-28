@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/field"
-	"github.com/lobehub/lobe-mygo/pkg/internal/testkit"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/field"
+	"github.com/puremixlab/purekit/pkg/internal/testkit"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 type profile struct {

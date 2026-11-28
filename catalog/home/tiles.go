@@ -4,13 +4,13 @@ import (
 	"time"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/choice"
-	"github.com/lobehub/lobe-mygo/pkg/code"
-	"github.com/lobehub/lobe-mygo/pkg/display"
-	"github.com/lobehub/lobe-mygo/pkg/feedback"
-	"github.com/lobehub/lobe-mygo/pkg/field"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/choice"
+	"github.com/puremixlab/purekit/pkg/code"
+	"github.com/puremixlab/purekit/pkg/display"
+	"github.com/puremixlab/purekit/pkg/feedback"
+	"github.com/puremixlab/purekit/pkg/field"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 // Tile is a bento tile of the home page: a scene of real components, rendered to an image.
@@ -42,7 +42,7 @@ var Tiles = []Tile{
 		field.Calendar(c, &day, field.CalendarProps{NoToday: true})
 	}},
 	{"qr", 260, 260, func(c *ui.Context) {
-		code.QRCode(c, "https://mygo.lobehub.com", code.QRCodeProps{Size: 150})
+		code.QRCode(c, "https://github.com/puremixlab/purekit", code.QRCodeProps{Size: 150})
 	}},
 	{"controls", 260, 260, controlsTile},
 	{"buttons", 260, 120, func(c *ui.Context) {

@@ -4,7 +4,7 @@ import (
 	"strconv"
 
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/display"
+	"github.com/puremixlab/purekit/pkg/display"
 )
 
 func Headings(c *ui.Context) {

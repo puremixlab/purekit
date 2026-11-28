@@ -1,4 +1,4 @@
-// Package l10n holds the texts Lobe MyGo's components say themselves, in English and the
+// Package l10n holds the texts PureKit components say themselves, in English and the
 // languages they are translated to: a library catalog of the namespace "lobe", said in the
 // language of the window. An app changes them, or translates them to its other languages, with
 // keys "lobe.<key>" in its own catalogs.

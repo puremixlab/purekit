@@ -2,8 +2,8 @@ package scrollarea
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/display"
-	"github.com/lobehub/lobe-mygo/pkg/layout"
+	"github.com/puremixlab/purekit/pkg/display"
+	"github.com/puremixlab/purekit/pkg/layout"
 )
 
 var topics = []string{"Design", "Engineering", "Research", "Marketing", "Sales", "Support", "Finance", "Legal", "Operations", "People", "Data", "Security"}

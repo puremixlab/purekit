@@ -1,75 +1,31 @@
-<a name="readme-top"></a>
+![PureKit — UI components for native Go apps](./.github/banner.png)
 
-<div align="center">
+# PureKit
 
-![Lobe MyGo](./.github/banner.png)
+PureKit is a UI kit for native Go apps built with [MyGo](https://github.com/egoist/mygo). It renders components on the GPU and runs interactive examples in the browser through WebAssembly.
 
-<h1>Lobe MyGo</h1>
+[Getting started](./docs/getting-started.mdx) · [Component catalog](./catalog) · [Changelog](./CHANGELOG.md) · [GitHub](https://github.com/puremixlab/purekit)
 
-<h3>The UI Kit for Native Go Apps</h3>
+[![Quality checks](https://github.com/puremixlab/purekit/actions/workflows/quality.yml/badge.svg)](https://github.com/puremixlab/purekit/actions/workflows/quality.yml)
+[![Go reference](https://pkg.go.dev/badge/github.com/puremixlab/purekit.svg)](https://pkg.go.dev/github.com/puremixlab/purekit)
+[![MIT license](https://img.shields.io/github/license/puremixlab/purekit)](./LICENSE)
 
-Lobe UI components for [MyGo](https://github.com/egoist/mygo) native UI, drawn on the GPU in pure Go.
+## Components
 
-[Docs](https://mygo.lobehub.com) · [Catalog](./catalog) · [Changelog](./CHANGELOG.md) · [Report Bug][github-issues-link] · [Request Feature][github-issues-link]
+- Over 70 components for actions, inputs, forms, navigation, overlays, and layout.
+- System light and dark appearance, with configurable colors, radii, and type sizes.
+- Springs and shared-element transitions for controls, popups, and notifications.
+- Native desktop builds in pure Go, with Lucide icons and component strings in English and Simplified Chinese.
 
-<!-- SHIELD GROUP -->
+![Button variants in light and dark modes](./.github/gallery.png)
 
-[![][go-reference-shield]][go-reference-link]
-[![][go-version-shield]][go-version-link]
-[![][discord-shield]][discord-link]<br/>
-[![][github-contributors-shield]][github-contributors-link]
-[![][github-forks-shield]][github-forks-link]
-[![][github-stars-shield]][github-stars-link]
-[![][github-issues-shield]][github-issues-link]
-[![][github-license-shield]][github-license-link]
+## Getting started
 
-</div>
+PureKit requires Go 1.27.3 or later.
 
-<details>
-<summary><kbd>Table of contents</kbd></summary>
-
-#### TOC
-
-- [✨ Why Lobe MyGo?](#-why-lobe-mygo)
-- [🚀 Getting Started](#-getting-started)
-- [📦 Packages](#-packages)
-- [📖 Documentation](#-documentation)
-- [💬 Community](#-community)
-- [⌨️ Local Development](#️-local-development)
-- [🤝 Contributing](#-contributing)
-- [🩷 Sponsor](#-sponsor)
-- [🔗 Links](#-links)
-
-####
-
-</details>
-
-## ✨ Why Lobe MyGo?
-
-Lobe MyGo brings the [Lobe UI](https://github.com/lobehub/lobe-ui) design language to desktop apps written with MyGo's native UI: no HTML, no JavaScript and no webview.
-
-- **Lobe UI, in Go**: 70+ components (buttons, inputs, menus, modals, toasts, tabs and more) that look and move like their React counterparts.
-- **Same tokens as Lobe UI**: colors, radii and font sizes are generated from `@lobehub/ui`, so a Go app and a web app share one look.
-- **Light and dark built in**: `theme.Apply` follows the system appearance with no extra setup.
-- **Pure Go, no cgo**: one small binary per platform, cross-compiled from any machine.
-- **Motion included**: springs and shared-element transitions for indicators, overlays and toasts.
-- **Lucide icons**: all 2,300+ Lucide icons as Go functions.
-
-![](./.github/gallery.png)
-
-<div align="right">
-
-[![][back-to-top]](#readme-top)
-
-</div>
-
-## 🚀 Getting Started
-
-```bash
-$ go get github.com/lobehub/lobe-mygo
+```sh
+go get github.com/puremixlab/purekit
 ```
-
-Lobe MyGo needs Go 1.27.3 or later and builds on [MyGo](https://github.com/egoist/mygo).
 
 ```go
 package main
@@ -80,8 +36,8 @@ import (
 
 	"github.com/egoist/mygo"
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/action"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/action"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 var count int
@@ -89,7 +45,7 @@ var count int
 func view(c *ui.Context) {
 	theme.Apply(c)
 	ui.Column(c).Fill().Center().Gap(12).Background(theme.TokensOf(c).BgContainer).Children(func() {
-		if action.Button(c, "Hello Lobe", action.ButtonProps{Variant: action.Primary}).Clicked() {
+		if action.Button(c, "Hello PureKit", action.ButtonProps{Variant: action.Primary}).Clicked() {
 			count++
 		}
 		ui.Text(c, fmt.Sprintf("Clicked %d times", count))
@@ -98,7 +54,7 @@ func view(c *ui.Context) {
 
 func main() {
 	mygo.App.WhenReady(func() {
-		mygo.NewWindow(mygo.WindowOptions{Title: "Hello Lobe", Width: 480, Height: 320, Content: ui.View(view)})
+		mygo.NewWindow(mygo.WindowOptions{Title: "Hello PureKit", Width: 480, Height: 320, Content: ui.View(view)})
 	})
 	if err := mygo.App.Run(); err != nil {
 		log.Fatal(err)
@@ -106,19 +62,9 @@ func main() {
 }
 ```
 
-Call `theme.Apply(c)` at the top of each view, then read design tokens with `theme.TokensOf(c)`.
+Call `theme.Apply(c)` at the top of each view and use `theme.TokensOf(c)` for its design tokens. For a full desktop window with a title bar, sidebar, tabs, and settings, see [the desktop starter](./examples/desktop).
 
-To start a whole app, copy [`examples/desktop`](./examples/desktop): a skeleton desktop window with a title bar, tabs with history, a resizable sidebar, a content card and a settings form, styled after the LobeHub desktop app. Run it with `go run ./examples/desktop`.
-
-Components speak English and Simplified Chinese, in the language the app shows: an app that ships `zh-Hans` in its [MyGo catalogs](https://github.com/egoist/mygo/blob/main/docs/i18n.md) gets them in Chinese, and changes or translates any of their texts with `lobe.<key>` keys (see [`pkg/internal/l10n/messages/en.json`](./pkg/internal/l10n/messages/en.json)). The starter shows both, with a language switch in Settings.
-
-<div align="right">
-
-[![][back-to-top]](#readme-top)
-
-</div>
-
-## 📦 Packages
+## Packages
 
 | Package        | Components                                                                                                                              |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -130,142 +76,31 @@ Components speak English and Simplified Chinese, in the language the app shows: 
 | `pkg/overlay`  | Tooltip, Popover, DropdownMenu, ContextMenu                                                                                             |
 | `pkg/nav`      | Tabs, Pagination, Breadcrumb, Steps, Burger                                                                                             |
 | `pkg/layout`   | Block, Grid, Divider, ScrollArea, DraggablePanel, Header, SideNav, DraggableSideNav, Layout, GuideCard, SortableList                    |
+| `pkg/form`     | Form, Field, Group, SubmitFooter |
 | `pkg/code`     | Highlighter, Snippet, QRCode                                                                                                            |
 | `pkg/markdown` | Markdown, with streaming                                                                                                                |
 | `pkg/theme`    | Light and dark tokens, sizes, shadows                                                                                                   |
 | `pkg/motion`   | Springs, easings, transitions                                                                                                           |
 | `pkg/lucide`   | Lucide icons                                                                                                                            |
 
-<div align="right">
+## Local development
 
-[![][back-to-top]](#readme-top)
+Use Go 1.27.3 or newer and Bun 1.4 or newer.
 
-</div>
-
-## 📖 Documentation
-
-The docs site shows every component as a live MyGo demo, compiled to WebAssembly and drawn in the browser, next to an API table generated from its Go `Props` struct.
-
-```bash
-$ bun install
-$ bun run dev
+```sh
+git clone https://github.com/puremixlab/purekit.git
+cd purekit
+go test ./...
+go run ./catalog
+go run ./examples/desktop
+bun install --frozen-lockfile
+bun run dev
 ```
 
-- **Docs site**: [mygo.lobehub.com](https://mygo.lobehub.com), starting with [Getting Started](https://mygo.lobehub.com/getting-started)
-- **Component pages and demos**: [`catalog/`](./catalog)
-- **Changelog**: [CHANGELOG.md](./CHANGELOG.md)
+Each component page includes a live demo and a Go API table. Use `bun run build` to generate the static documentation in `dist`. Set `PUREKIT_DOCS_URL` to the public site origin when building for deployment. Local builds use `http://localhost:5173`.
 
-<div align="right">
+## Attribution and license
 
-[![][back-to-top]](#readme-top)
+PureKit is based on [Lobe MyGo](https://github.com/lobehub/lobe-mygo) by [LobeHub](https://github.com/lobehub). The design tokens are generated from [Lobe UI](https://github.com/lobehub/lobe-ui).
 
-</div>
-
-## 💬 Community
-
-Questions, ideas and showcases are all welcome:
-
-- [Discord][discord-link]
-- [GitHub Issues][github-issues-link]
-
-<div align="right">
-
-[![][back-to-top]](#readme-top)
-
-</div>
-
-## ⌨️ Local Development
-
-Local development requires Go 1.27.3 or newer and Bun 1.4 or newer.
-
-```bash
-$ git clone https://github.com/lobehub/lobe-mygo.git
-$ cd lobe-mygo
-$ go test ./...
-$ go run ./catalog            # native catalog window
-$ go run ./catalog button/basic
-$ go run ./examples/desktop    # desktop app starter
-$ bun install && bun run dev  # docs site with WebAssembly demos
-```
-
-<div align="right">
-
-[![][back-to-top]](#readme-top)
-
-</div>
-
-## 🤝 Contributing
-
-Contributions of all types are more than welcome, if you are interested in contributing code, feel free to check out our GitHub [Issues][github-issues-link] to get stuck in to show us what you’re made of.
-
-[![][pr-welcome-shield]][pr-welcome-link]
-
-[![][contributors-contrib]][contributors-link]
-
-<div align="right">
-
-[![][back-to-top]](#readme-top)
-
-</div>
-
-## 🩷 Sponsor
-
-Every bit counts and your one-time donation sparkles in our galaxy of support! You're a shooting star, making a swift and bright impact on our journey. Thank you for believing in us – your generosity guides us toward our mission, one brilliant flash at a time.
-
-<a href="https://opencollective.com/lobehub" target="_blank">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/lobehub/.github/blob/main/static/sponsor-dark.png?raw=true">
-    <img  src="https://github.com/lobehub/.github/blob/main/static/sponsor-light.png?raw=true">
-  </picture>
-</a>
-
-<div align="right">
-
-[![][back-to-top]](#readme-top)
-
-</div>
-
-## 🔗 Links
-
-- **[🍭 Lobe UI](https://github.com/lobehub/lobe-ui)** - React component library for AI apps
-- **[🐹 MyGo](https://github.com/egoist/mygo)** - Desktop apps in Go, with native UI or a web frontend
-- **[🥨 Lobe Icons](https://github.com/lobehub/lobe-icons)** - AI / LLM brand logos and icons
-- **[✒️ Lobe Editor](https://github.com/lobehub/lobe-editor)** - Lexical-based rich text editor for React, with Markdown, plugins and a chat composer
-- **[😀 Fluent Emoji](https://github.com/lobehub/fluent-emoji)** - Fluent Emoji assets
-- **[📖 Docs Kit](https://github.com/lobehub/docs-kit)** - Reusable documentation toolkit and lobedocs CLI for LobeHub component libraries
-
-<div align="right">
-
-[![][back-to-top]](#readme-top)
-
-</div>
-
----
-
-Copyright © 2026 [LobeHub][profile-link]. <br />
-This project is [MIT](./LICENSE) licensed.
-
-<!-- LINK GROUP -->
-
-[back-to-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square
-[contributors-contrib]: https://contrib.rocks/image?repo=lobehub/lobe-mygo
-[contributors-link]: https://github.com/lobehub/lobe-mygo/graphs/contributors
-[discord-link]: https://discord.gg/AYFPHvv2jT
-[discord-shield]: https://img.shields.io/discord/1127171173982154893?color=5865F2&label=discord&labelColor=black&logo=discord&logoColor=white&style=flat-square
-[github-contributors-link]: https://github.com/lobehub/lobe-mygo/graphs/contributors
-[github-contributors-shield]: https://img.shields.io/github/contributors/lobehub/lobe-mygo?color=c4f042&labelColor=black&style=flat-square
-[github-forks-link]: https://github.com/lobehub/lobe-mygo/network/members
-[github-forks-shield]: https://img.shields.io/github/forks/lobehub/lobe-mygo?color=8ae8ff&labelColor=black&style=flat-square
-[github-issues-link]: https://github.com/lobehub/lobe-mygo/issues
-[github-issues-shield]: https://img.shields.io/github/issues/lobehub/lobe-mygo?color=ff80eb&labelColor=black&style=flat-square
-[github-license-link]: https://github.com/lobehub/lobe-mygo/blob/main/LICENSE
-[github-license-shield]: https://img.shields.io/github/license/lobehub/lobe-mygo?color=white&labelColor=black&style=flat-square
-[github-stars-link]: https://github.com/lobehub/lobe-mygo/stargazers
-[github-stars-shield]: https://img.shields.io/github/stars/lobehub/lobe-mygo?color=ffcb47&labelColor=black&style=flat-square
-[go-reference-link]: https://pkg.go.dev/github.com/lobehub/lobe-mygo
-[go-reference-shield]: https://img.shields.io/badge/go-reference-00ADD8?labelColor=black&logo=go&logoColor=white&style=flat-square
-[go-version-link]: ./go.mod
-[go-version-shield]: https://img.shields.io/github/go-mod/go-version/lobehub/lobe-mygo?color=00ADD8&labelColor=black&logo=go&logoColor=white&style=flat-square
-[pr-welcome-link]: https://github.com/lobehub/lobe-mygo/pulls
-[pr-welcome-shield]: https://img.shields.io/badge/🤯_pr_welcome-%E2%86%92-ffcb47?labelColor=black&style=for-the-badge
-[profile-link]: https://github.com/lobehub
+Copyright © 2026 LobeHub. See the [MIT license](./LICENSE) and the [Lucide and Feather icon notices](./pkg/lucide/LICENSE).

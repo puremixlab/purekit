@@ -2,7 +2,7 @@ package feedback
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/motion"
+	"github.com/puremixlab/purekit/pkg/motion"
 )
 
 // DialogBase stops building the dialog the frame it closes, and builds the panel inside the

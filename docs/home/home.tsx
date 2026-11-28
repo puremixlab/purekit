@@ -11,9 +11,9 @@ import { renderLink } from './renderLink';
 import { ShowcaseFrame } from './ShowcaseFrame';
 import { Snippets } from './Snippets';
 
-const SITE_URL = 'https://mygo.lobehub.com';
-const GITHUB_URL = 'https://github.com/lobehub/lobe-mygo';
-const INSTALL_COMMAND = 'go get github.com/lobehub/lobe-mygo';
+const GITHUB_URL = 'https://github.com/puremixlab/purekit';
+const GET_STARTED_SOURCE = GITHUB_URL + '/blob/main/docs/getting-started.mdx';
+const INSTALL_COMMAND = 'go get github.com/puremixlab/purekit';
 const GET_STARTED = '/getting-started';
 
 export default function Home({ description }: { description: string }) {
@@ -21,10 +21,10 @@ export default function Home({ description }: { description: string }) {
   return (
     <>
       <LandingHero
-        accent="Native Go UI"
+        accent={<span className="purekit-accent">Native Go UI</span>}
         description={<span data-pagefind-meta="description">{description}</span>}
         renderLink={renderLink}
-        title={<span data-pagefind-meta="title">Lobe MyGo</span>}
+        title={<span data-pagefind-meta="title">PureKit</span>}
         actions={[
           { href: GET_STARTED, icon: ArrowRight, iconPlacement: 'end', label: 'Get Started', primary: true },
           { href: GITHUB_URL, icon: GithubIcon, label: 'GitHub' },
@@ -32,7 +32,7 @@ export default function Home({ description }: { description: string }) {
         aside={
           <AgentSkillCard
             agent={{
-              code: `Read ${SITE_URL}/skills.md and follow it to build native UI with Lobe MyGo.`,
+              code: `Read ${GET_STARTED_SOURCE} and use PureKit to build the native Go UI.`,
               description: 'Send this prompt to your agent to pick the right components',
             }}
             footer={
@@ -47,7 +47,7 @@ export default function Home({ description }: { description: string }) {
             }
             human={{
               code: INSTALL_COMMAND,
-              description: 'Add Lobe MyGo to your Go module',
+              description: 'Add PureKit to your Go module',
             }}
           />
         }
@@ -63,12 +63,12 @@ export default function Home({ description }: { description: string }) {
 
       <LandingSection
         actions={[{ href: '/components/agent-avatar', icon: ArrowRight, iconPlacement: 'end', label: 'Browse components' }]}
-        description="Every tile is a real render of the Go component, in the docs' own light or dark."
+        description="Each tile previews a Go component in light or dark mode."
         eyebrow="Components"
         eyebrowColor="blue"
         id="home-gallery"
         renderLink={renderLink}
-        title="Lobe UI, drawn in Go"
+        title="Explore the components"
         onNavigate={navigate}
       >
         <Gallery />
@@ -106,7 +106,7 @@ export default function Home({ description }: { description: string }) {
         title="Build your native Go app"
         footnote={
           <>
-            Open source · MIT license · Go 1.27+ · <Link to={GET_STARTED}>Get Started →</Link>
+            Open source · MIT license · Go 1.27.3+ · <Link to={GET_STARTED}>Get Started →</Link>
           </>
         }
       />

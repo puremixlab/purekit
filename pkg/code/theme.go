@@ -5,7 +5,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 	"github.com/egoist/mygo/ui/editor"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 // Theme returns Lobe's code colors for tk, as lobe-ui's lobe-theme colors them: keywords and

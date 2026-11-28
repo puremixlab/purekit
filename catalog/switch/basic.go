@@ -2,8 +2,8 @@ package switchdemo
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/choice"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/choice"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 var wifi, bluetooth, airplane = true, false, true

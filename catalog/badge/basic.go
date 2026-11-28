@@ -2,9 +2,9 @@ package badge
 
 import (
 	"github.com/egoist/mygo/ui"
-	"github.com/lobehub/lobe-mygo/pkg/display"
-	"github.com/lobehub/lobe-mygo/pkg/feedback"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/display"
+	"github.com/puremixlab/purekit/pkg/feedback"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func Basic(c *ui.Context) {

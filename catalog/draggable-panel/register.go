@@ -1,6 +1,6 @@
 package draggablepanel
 
-import "github.com/lobehub/lobe-mygo/catalog/registry"
+import "github.com/puremixlab/purekit/catalog/registry"
 
 func init() {
 	registry.Add("draggable-panel/basic", Basic)

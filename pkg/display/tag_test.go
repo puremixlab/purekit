@@ -1,8 +1,8 @@
 package display
 
 import (
-	"github.com/lobehub/lobe-mygo/pkg/internal/testkit"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/internal/testkit"
+	"github.com/puremixlab/purekit/pkg/theme"
 	"testing"
 
 	"github.com/egoist/mygo/ui"

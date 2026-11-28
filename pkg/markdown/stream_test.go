@@ -7,7 +7,7 @@ import (
 
 	"github.com/egoist/mygo/ui"
 	mmd "github.com/egoist/mygo/ui/markdown"
-	"github.com/lobehub/lobe-mygo/pkg/theme"
+	"github.com/puremixlab/purekit/pkg/theme"
 )
 
 func TestRevealFromPresetAndGranularity(t *testing.T) {

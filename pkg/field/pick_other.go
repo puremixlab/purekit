@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/egoist/mygo"
-	"github.com/lobehub/lobe-mygo/pkg/internal/l10n"
+	"github.com/puremixlab/purekit/pkg/internal/l10n"
 )
 
 // PickFiles shows the system's open dialog for o and returns the files chosen, nil when canceled.
