@@ -88,6 +88,7 @@ import (
 	_ "github.com/puremixlab/purekit/catalog/tokens"
 	_ "github.com/puremixlab/purekit/catalog/tooltip"
 	_ "github.com/puremixlab/purekit/catalog/upload"
+	_ "github.com/puremixlab/purekit/catalog/workspace"
 )
 
 func main() {
