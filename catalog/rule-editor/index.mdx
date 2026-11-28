@@ -1,0 +1,26 @@
+---
+title: RuleEditor
+description: Edit a group of conditions that matches all or any rules.
+category: Data Entry
+---
+
+import { GoDemo } from '../../docs/components/GoDemo';
+import { GoApi } from '../../docs/components/GoApi';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+Supply the fields and operators your application understands. `RuleEditor` edits the conditions and `RuleSet.Matches` combines the result of your app's comparisons.
+
+<GoDemo name="rule-editor/basic" title="Document filters" height={285} source={basic} />
+
+## API
+
+<GoApi data={api} name="RuleEditorProps" />
+
+<GoApi data={api} name="RuleField" />
+
+<GoApi data={api} name="RuleOperator" />
+
+<GoApi data={api} name="RuleSet" />
+
+<GoApi data={api} name="Rule" />

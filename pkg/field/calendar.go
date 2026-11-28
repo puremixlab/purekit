@@ -42,11 +42,11 @@ const (
 // years and views to choose a month and a year. The arrows, Page Up and Page Down move between
 // days while a day has the focus, and Enter chooses one.
 func Calendar(c *ui.Context, value *time.Time, p CalendarProps) ui.Element {
-	root, _ := calendar(c, value, p)
+	root, _ := calendar(c, value, p, nil)
 	return root
 }
 
-func calendar(c *ui.Context, value *time.Time, p CalendarProps) (ui.Element, bool) {
+func calendar(c *ui.Context, value *time.Time, p CalendarProps, span *DateRange) (ui.Element, bool) {
 	tk := theme.TokensOf(c)
 	root := ui.Column(c).Width(calendarWidth).TextColor(tk.Text).Shrink(0)
 	st := ui.Local(root, "calendar", func() calendarState { return calendarState{} })
@@ -90,7 +90,7 @@ func calendar(c *ui.Context, value *time.Time, p CalendarProps) (ui.Element, boo
 					st.mode = modeDate
 				})
 			default:
-				dayGrid(c, tk, value, st, p, today, disabled, choose)
+				dayGrid(c, tk, value, st, p, today, span, disabled, choose)
 			}
 		})
 		if !p.NoToday && st.mode == modeDate {
@@ -186,7 +186,7 @@ func viewButton(c *ui.Context, tk *theme.Tokens, text string, do func()) {
 	b.Children(func() { ui.Text(c, text) })
 }
 
-func dayGrid(c *ui.Context, tk *theme.Tokens, value *time.Time, st *calendarState, p CalendarProps, today time.Time, disabled func(time.Time) bool, choose func(time.Time)) {
+func dayGrid(c *ui.Context, tk *theme.Tokens, value *time.Time, st *calendarState, p CalendarProps, today time.Time, span *DateRange, disabled func(time.Time) bool, choose func(time.Time)) {
 	cell := float32(calendarBody) / 7
 	start := st.view.AddDate(0, 0, -int((st.view.Weekday()-p.WeekStart+7)%7))
 	grid := ui.Column(c)
@@ -222,7 +222,7 @@ func dayGrid(c *ui.Context, tk *theme.Tokens, value *time.Time, st *calendarStat
 			ui.Row(c.Key(w)).Children(func() {
 				for i := range 7 {
 					d := start.AddDate(0, 0, w*7+i)
-					dayCell(c.Key(i), tk, d, cell, st, value, today, disabled(d), choose)
+					dayCell(c.Key(i), tk, d, cell, st, value, today, span, disabled(d), choose)
 				}
 			})
 		}
@@ -230,10 +230,16 @@ func dayGrid(c *ui.Context, tk *theme.Tokens, value *time.Time, st *calendarStat
 	st.moved = false
 }
 
-func dayCell(c *ui.Context, tk *theme.Tokens, d time.Time, width float32, st *calendarState, value *time.Time, today time.Time, off bool, choose func(time.Time)) {
+func dayCell(c *ui.Context, tk *theme.Tokens, d time.Time, width float32, st *calendarState, value *time.Time, today time.Time, span *DateRange, off bool, choose func(time.Time)) {
 	b := ui.ButtonBase(c).Label(d.Format("2006-01-02")).Size(width, 36).Center().FocusRing(false).Cursor(ui.CursorPointer)
 	inView := d.Month() == st.view.Month()
 	chosen := !value.IsZero() && sameDay(d, *value)
+	inRange := false
+	if span != nil && !span.Start.IsZero() && !span.End.IsZero() {
+		chosen = chosen || sameDay(d, span.Start) || sameDay(d, span.End)
+		inRange = d.After(dateOf(span.Start)) && d.Before(dateOf(span.End))
+	}
+	b.AccessSelected(chosen || inRange)
 	if off {
 		b.Disabled(true).Cursor(ui.CursorNotAllowed)
 	}
@@ -249,6 +255,8 @@ func dayCell(c *ui.Context, tk *theme.Tokens, d time.Time, width float32, st *ca
 	case off:
 	case chosen && inView:
 		fg, bg, weight = tk.BgContainer, tk.Text, 600
+	case inRange && inView:
+		fg, bg = tk.Text, tk.PrimaryBg
 	case b.Hovered():
 		bg = tk.FillTertiary
 		if inView {

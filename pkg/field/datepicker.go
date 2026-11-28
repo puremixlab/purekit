@@ -35,14 +35,73 @@ type DatePickerProps struct {
 // DatePicker chooses a day into *value, the zero time while none is chosen, from a Calendar that
 // opens below its trigger and closes once a day is chosen. It returns the trigger.
 func DatePicker(c *ui.Context, value *time.Time, p DatePickerProps) ui.Element {
+	if p.Format == "" {
+		p.Format = "2006-01-02"
+	}
+	if p.Placeholder == "" {
+		p.Placeholder = l10n.Text(c, "datePickerPlaceholder")
+	}
+	var label string
+	if !value.IsZero() {
+		label = value.Format(p.Format)
+	}
+	return dateControl(c, p, label, func() { *value = time.Time{} }, func() bool {
+		_, picked := calendar(c, value, p.calendarProps(), nil)
+		return picked
+	})
+}
+
+// DateRange stores the endpoints of a date range. End is zero while an endpoint is pending.
+type DateRange struct {
+	Start, End time.Time
+}
+
+// DateRangePicker chooses a start and an end day using the same calendar as DatePicker.
+// Choosing an earlier second endpoint arranges the two days in chronological order.
+func DateRangePicker(c *ui.Context, value *DateRange, p DatePickerProps) ui.Element {
+	if p.Format == "" {
+		p.Format = "2006-01-02"
+	}
+	if p.Placeholder == "" {
+		p.Placeholder = l10n.Text(c, "dateRangePlaceholder")
+	}
+	var label string
+	if !value.Start.IsZero() {
+		label = value.Start.Format(p.Format)
+		if value.End.IsZero() {
+			label += " – " + l10n.Text(c, "dateRangeEnd")
+		} else {
+			label += " – " + value.End.Format(p.Format)
+		}
+	}
+	return dateControl(c, p, label, func() { *value = DateRange{} }, func() bool {
+		day := value.Start
+		if !value.End.IsZero() {
+			day = value.End
+		}
+		_, picked := calendar(c, &day, p.calendarProps(), value)
+		if !picked {
+			return false
+		}
+		if value.Start.IsZero() || !value.End.IsZero() {
+			*value = DateRange{Start: day}
+			c.Invalidate()
+			return false
+		}
+		value.End = day
+		if day.Before(value.Start) {
+			value.Start, value.End = day, value.Start
+		}
+		return true
+	})
+}
+
+func (p DatePickerProps) calendarProps() CalendarProps {
+	return CalendarProps{DisabledDate: p.DisabledDate, WeekStart: p.WeekStart, NoToday: p.NoToday}
+}
+
+func dateControl(c *ui.Context, p DatePickerProps, label string, clear func(), body func() bool) ui.Element {
 	tk := theme.TokensOf(c)
-	format, placeholder := p.Format, p.Placeholder
-	if format == "" {
-		format = "2006-01-02"
-	}
-	if placeholder == "" {
-		placeholder = l10n.Text(c, "datePickerPlaceholder")
-	}
 	box := ui.Row(c).FillWidth().AlignItems(ui.Center)
 	open := ui.Local(box, "open", func() bool { return false })
 	var trigger ui.Element
@@ -52,12 +111,12 @@ func DatePicker(c *ui.Context, value *time.Time, p DatePickerProps) ui.Element {
 			trigger.Disabled(true).Cursor(ui.CursorNotAllowed)
 			box.Opacity(0.5)
 		}
-		clearable := p.AllowClear && !value.IsZero() && !p.Disabled
+		clearable := p.AllowClear && label != "" && !p.Disabled
 		trigger.Children(func() {
-			if value.IsZero() {
-				ui.Text(c, placeholder).TextColor(tk.TextPlaceholder).Grow(1).SingleLine()
+			if label == "" {
+				ui.Text(c, p.Placeholder).TextColor(tk.TextPlaceholder).Grow(1).SingleLine()
 			} else {
-				ui.Text(c, value.Format(format)).FontFeatures("tnum").Grow(1).SingleLine()
+				ui.Text(c, label).FontFeatures("tnum").Grow(1).SingleLine()
 			}
 			icon := ui.Icon(c, lucide.Calendar()).TextColor(tk.TextTertiary).Shrink(0)
 			if clearable {
@@ -72,7 +131,7 @@ func DatePicker(c *ui.Context, value *time.Time, p DatePickerProps) ui.Element {
 				x.TextColor(tk.TextSecondary)
 			}
 			if x.Clicked() {
-				*value = time.Time{}
+				clear()
 			}
 			x.Children(func() { ui.Icon(c, lucide.CircleX()).FontSize(14) })
 		}
@@ -81,7 +140,7 @@ func DatePicker(c *ui.Context, value *time.Time, p DatePickerProps) ui.Element {
 		}
 		picked := false
 		panel := overlay.Popover(c, trigger, open, overlay.PopoverProps{Placement: overlay.Bottom}, func() {
-			_, picked = calendar(c, value, CalendarProps{DisabledDate: p.DisabledDate, WeekStart: p.WeekStart, NoToday: p.NoToday})
+			picked = body()
 		})
 		panel.Padding(0).Radius(16)
 		if picked {

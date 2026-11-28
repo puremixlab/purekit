@@ -1,0 +1,32 @@
+---
+title: Desktop Workspace
+description: A resizable folder sidebar, document table and inspector with shared toolbar commands.
+category: Layout
+---
+
+import { GoApi } from '../../docs/components/GoApi';
+import { GoDemo } from '../../docs/components/GoDemo';
+import api from './api.json';
+import source from './workspace.go?raw';
+
+Choose a folder, select a document to show its details, and press Enter to preview it. Drag either divider or focus it with Tab and use the arrow keys to resize the panes. Double-click a divider to restore its default size.
+
+<GoDemo name="workspace/basic" title="Document workspace" height={360} source={source} />
+
+## Native example
+
+Run `go run ./examples/workspace` for a desktop window with a Workspace menu and saved pane sizes. The menu and toolbar use the same `command.Command` values. The View uses `HandleShortcuts` when hosted without native menu accelerators.
+
+## API
+
+<GoApi data={api} name="SplitViewProps" />
+
+<GoApi data={api} name="SplitViewState" />
+
+<GoApi data={api} name="InspectorProps" />
+
+<GoApi data={api} name="ToolbarProps" />
+
+<GoApi data={api} name="ToolbarGroup" />
+
+<GoApi data={api} name="Command" />

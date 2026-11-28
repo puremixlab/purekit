@@ -1,0 +1,20 @@
+---
+title: Table
+description: A virtualized data table with resizable columns, sortable headings and desktop selection.
+category: Data Views
+---
+
+import { GoApi } from '../../docs/components/GoApi';
+import { GoDemo } from '../../docs/components/GoDemo';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+Use `display.Table` with a `ui.ListState` and a cell builder. Give the table a bounded height to scroll. Set `Key` on the state to keep a row's selection when the data is reordered.
+
+Click a column heading to change its sort order. Drag a heading edge to resize it. Use Command or Ctrl to toggle rows, Shift to extend the selection, and the arrow keys to move it.
+
+<GoDemo name="table/basic" title="Document list" height={286} source={basic} />
+
+## API
+
+<GoApi data={api} name="TableProps" />

@@ -1,0 +1,20 @@
+---
+title: ColumnView
+description: Browse hierarchical content in adjacent columns.
+category: Data Views
+---
+
+import { GoDemo } from '../../docs/components/GoDemo';
+import { GoApi } from '../../docs/components/GoApi';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+Select a folder to open its children in the next column. The selected path is available in `ColumnViewState.Path`. Use Left and Right to move between the columns.
+
+<GoDemo name="column-view/basic" title="Folder browser" height={250} source={basic} />
+
+## API
+
+<GoApi data={api} name="ColumnViewProps" />
+
+<GoApi data={api} name="ColumnViewState" />

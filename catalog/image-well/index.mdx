@@ -1,0 +1,20 @@
+---
+title: ImageWell
+description: Choose, drop, preview or clear an image.
+category: Data Entry
+---
+
+import { GoDemo } from '../../docs/components/GoDemo';
+import { GoApi } from '../../docs/components/GoApi';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+Use the chooser or drop an image into `field.ImageWell` in a desktop window. Click the image to preview it at a larger size. An unreadable image leaves the current selection in place.
+
+<GoDemo name="image-well/basic" title="Project image" height={235} source={basic} />
+
+## API
+
+<GoApi data={api} name="ImageWellProps" />
+
+<GoApi data={api} name="ImageWellValue" />

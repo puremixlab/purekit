@@ -1,0 +1,18 @@
+---
+title: OutlineTable
+description: A tree in the first column and attributes in the remaining columns.
+category: Data Views
+---
+
+import { GoApi } from '../../docs/components/GoApi';
+import { GoDemo } from '../../docs/components/GoDemo';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+Call `display.OutlineTable` with `ui.OutlineState`, column definitions and a cell builder. The first column includes disclosure controls and indentation.
+
+<GoDemo name="outline-table/basic" title="Workspace files" height={230} source={basic} />
+
+## API
+
+<GoApi data={api} name="OutlineProps" />

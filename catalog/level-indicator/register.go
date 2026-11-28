@@ -1,0 +1,5 @@
+package levelindicator
+
+import "github.com/puremixlab/purekit/catalog/registry"
+
+func init() { registry.Add("level-indicator/basic", Basic) }

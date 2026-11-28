@@ -1,0 +1,20 @@
+---
+title: Outline
+description: A scrolling tree with persistent expansion and keyboard navigation.
+category: Data Views
+---
+
+import { GoApi } from '../../docs/components/GoApi';
+import { GoDemo } from '../../docs/components/GoDemo';
+import api from './api.json';
+import basic from './basic.go?raw';
+
+Call `display.Outline` with unique item keys and a function that returns the children of each branch. Keep `ui.OutlineState` with the view to preserve opened branches and selection.
+
+Select a row to focus the tree. Use the Right and Left arrow keys to expand and collapse a branch or move through its hierarchy.
+
+<GoDemo name="outline/basic" title="Folders" height={234} source={basic} />
+
+## API
+
+<GoApi data={api} name="OutlineProps" />
